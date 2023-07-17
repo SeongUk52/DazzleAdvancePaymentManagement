@@ -35,7 +35,7 @@ public class Goods {
 
     private LocalDateTime goodsDate;
 
-    private Integer storeId;
+    //private Integer storeId;
 
     private Integer storeAmount;
 
@@ -43,5 +43,5 @@ public class Goods {
     private Store store;
 
     @OneToMany(mappedBy = "goods", cascade = CascadeType.REMOVE)
-    private List<Order> orderList;
+    private List<Orders> ordersList;
 }

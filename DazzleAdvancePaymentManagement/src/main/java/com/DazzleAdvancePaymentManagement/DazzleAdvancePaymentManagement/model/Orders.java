@@ -3,8 +3,6 @@ package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.model;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,18 +14,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Order {
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderId;
+    private Integer ordersId;
 
-    private LocalDateTime orderDate;
+    private LocalDateTime ordersDate;
 
-    private Integer orderAmount;
+    private Integer ordersAmount;
 
-    private Integer customerId;
+    //private Integer customerId;
 
-    private Integer goodsId;
+    //private Integer goodsId;
 
     @ManyToOne
     private Customer customer;

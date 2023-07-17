@@ -31,7 +31,7 @@ public class Customer {
 
     private LocalDateTime customerDate;
 
-    private Integer storeId;
+    //private Integer storeId;
 
     private Integer changePaymentBalance;
 
@@ -39,5 +39,5 @@ public class Customer {
     private Store store;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
-    private List<Order> orderList;
+    private List<Orders> ordersList;
 }
