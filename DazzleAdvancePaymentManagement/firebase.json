@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "dazzleadvancepaymentmanagement",
+  "private_key_id": "d84d4bd08402318a429bb17a53f9809b471581a6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCz6Snx0glbBfMH\nrzxU0VPdq15QPRLyxhpPvF6lwKp+DyXZK7WtKEJDBl/RGcbtLxKH3eLvtHQMd0de\nFldjvgnCel5yQIpbntcTJNayI7aaTz69lNPHTtefDqVJdHmmKS/d0+RVekhE5ATk\n7afKRg8owerbl13MWRUaHk/Wy8JUyzUCGNx7DfsU88ix90Gh1b8aHek+77m6OL/O\nxBiqINIBtlLFlYppkU4h2ufZZfSgjD861zkULaUY+jQxPWQNn5qjmaJ9y66+MwUB\nVWPC40rL/l0dxZWAMPHsCPAWp1TurjHquR9JmpdZV8o7TdzWtWIwdCq8D6h9HJ6e\nQdn4bCgbAgMBAAECggEADnwk1OPoveveM82viVKrMms0NjicmHBLuQS9CBJZh7m3\nfeMvhuf5YcUXHNI6+miyUL8UIOGCAGjwFYqt8Ylg5sgMZ517pkHFJjTuljwa3RSp\nRAFCBcd6w8MdmqrminLBeFYxiZJFVEqZfEcIHdiDKvBl9NUch7HaaZZsLiqMlF/+\n9FclmC+kXJGuFXeR7llP/HCHVmlq5h4xWeQBjICWTHX6VQqI2SiDnmGykt2bbCZ3\ntq58zAs/wLmDE7pl2So39mErCMLJigJPOh94IWu9FFBUOmoj/LEGnIqbtHFj/zkA\nOlKcW9plfsMEL8b707VPbm2aqP+za0ft3+0ZDS3+eQKBgQD9f5gaThIc8kBiCuYt\n4lOS/TPG8094sfdaxJ66XjDPjfB+7zdQxOpDXL72jApzTS5Wqtmq0K96L1tcLJzj\nbo9ZMRSYXVFCAWGs9/E62TQqslEVtamuOs3IwX80MfG7G95wo8s6m3Qga30EH1ki\nk9AvsCoZm+Y8AeZnM/lm7tns+QKBgQC1r6rZpEzKsboWwyBXNwSw6oEz1lLg6xef\nf6MHxCG/yZw1vmg5nAwjWVAylCjEREJVSCa5Mx25xa5IJ0soRNGQxJRyqQOE7uUH\nxMEhX68Nd5w5IX+1KT8x65OYYF/mA5I84fkj8r2s2Rzt5zWv0iKWuce+9QM+rp93\ncLyye/KmswKBgQDxoZ7VbBdd2hg+nA7+K57oHEwvVpso+9JAheyazs+N98kG5XR/\nm8OFBDHOhnwrnaUO3XnvlU2+lMdr2+aL70XaiasM9N5QoUp+ejRJmOJd1Gzv2aJs\nvgaLVs2ubfDyHkVwbuB389fEU1DuDgeDqwuleTEYCf9ysYjyVJtlX0UA2QKBgQCv\nRAAHpiRiIGLIlIE9QRjoZcAvtmALEx6dwa4OzthTv/ROMBkxAeT/sKfZsu1EsChh\nRpH8dGAHlrgSaL1q4kBbbBdcKMj5Us9j2B0Kydf/oNP2lOcyZtDMolmmU8oPBIDs\n9Hy3ffIVrPfoU/OJYaf2SM902bzAmgnBWeLeNw2UWwKBgG8fJnDl4PNw2sTUJoM1\nzT5Xro3jZ1mYTaz2SviO0nkSXkF0XFTdslWeRxshdOx40xRWeOGAsWWqGvYAfNF/\nqY89HPJDaBZt+HuTrxbVI7dJWVpI9lFdX4XiwmEO3JbWOmePbkMnzB9NFP1QshNB\njVscrdx6WIWAE0HQtHky9xAG\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-a8phh@dazzleadvancepaymentmanagement.iam.gserviceaccount.com",
+  "client_id": "118422491333676753932",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-a8phh%40dazzleadvancepaymentmanagement.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
