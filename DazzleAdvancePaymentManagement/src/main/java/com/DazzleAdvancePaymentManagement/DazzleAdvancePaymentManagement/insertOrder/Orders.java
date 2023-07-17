@@ -1,7 +1,9 @@
-package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.model;
+package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertOrder;
 
 import java.time.LocalDateTime;
 
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertPayment.Customer;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertStock.Goods;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +24,8 @@ public class Orders {
     private LocalDateTime ordersDate;
 
     private Integer ordersAmount;
+
+    private Integer ordersPrice;
 
     //private Integer customerId;
 

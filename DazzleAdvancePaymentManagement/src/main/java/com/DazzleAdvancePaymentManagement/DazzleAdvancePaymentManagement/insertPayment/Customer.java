@@ -1,11 +1,12 @@
-package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.model;
+package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertPayment;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertOrder.Orders;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.Store;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,30 +19,26 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Goods {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer goodsId;
+    private Integer customerId;
 
-    private String goodsName;
+    private String customerName;
 
-    private String goodsCategory;
+    private String customerJob;
 
-    private Boolean goodsIce;
+    private Integer customerPaymentBalance;
 
-    private Integer goodsAmount;
-
-    private Integer goodsPrice;
-
-    private LocalDateTime goodsDate;
+    private LocalDateTime customerDate;
 
     //private Integer storeId;
 
-    private Integer storeAmount;
+    private Integer changePaymentBalance;
 
     @ManyToOne
     private Store store;
 
-    @OneToMany(mappedBy = "goods", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
     private List<Orders> ordersList;
 }

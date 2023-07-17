@@ -1,10 +1,11 @@
-package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.model;
+package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertPayment.Customer;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertStock.Goods;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

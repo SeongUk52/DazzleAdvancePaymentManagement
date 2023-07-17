@@ -1,7 +1,5 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement;
 
-import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.dao.StoreRepository;
-import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.model.Store;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
