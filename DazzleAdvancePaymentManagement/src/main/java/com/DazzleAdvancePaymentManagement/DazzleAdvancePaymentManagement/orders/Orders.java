@@ -1,9 +1,9 @@
-package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertOrder;
+package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.orders;
 
 import java.time.LocalDateTime;
 
-import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertPayment.Customer;
-import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertStock.Goods;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.customer.Customer;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.Goods;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

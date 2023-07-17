@@ -3,8 +3,8 @@ package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertPayment.Customer;
-import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.insertStock.Goods;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.customer.Customer;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.Goods;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
