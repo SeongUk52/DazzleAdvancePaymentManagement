@@ -22,6 +22,8 @@ import lombok.Setter;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer customerOrderId;
+
     private Integer customerId;
 
     private String customerName;
