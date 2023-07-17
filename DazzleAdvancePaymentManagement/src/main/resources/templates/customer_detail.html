@@ -15,11 +15,7 @@
         <td th:text="${customer.customerPaymentBalance}"></td>
         <td th:text="${customer.customerDate}"></td>
         <td th:text="${customer.changePaymentBalance}"></td>
-        <form th:action="@{|/customer/create/${customer.id}|}" method="post">
-            <textarea name="changePaymentBalance" id="changePaymentBalance" rows="3"></textarea>
-            <input type="submit" value="답변등록">
-        </form>
+
     </tr>
     </tbody>
 </table>
-
