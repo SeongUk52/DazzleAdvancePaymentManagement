@@ -19,3 +19,8 @@
     </tr>
     </tbody>
 </table>
+
+<form th:action="@{|/customer/create/${customerList.get(0).getCustomerId()}|}" method="post">
+    <textarea name="changePaymentBalance" id="changePaymentBalance" rows="1"></textarea>
+    <input type="submit" value="선수금 변동치 입력">
+</form>

@@ -37,7 +37,8 @@ public class CustomerController {
 
     @PostMapping("/customer/create/{id}")
     public String createPaymentChange(Model model,  @PathVariable("id") Integer id, @RequestParam Integer changePaymentBalance){
-        Customer customer = this.customerService.getCustomer(id);
+        List<Customer> customerList = this.customerService.getPersonalList(id);
+        Customer customer = customerList.get(customerList.size()-1);
         this.customerService.create(customer,changePaymentBalance);
         return String.format("redirect:/customer/detail/%s", id);
     }

@@ -60,6 +60,7 @@ public class CustomerService {
         customer1.setCustomerDate(LocalDateTime.now());
         customer1.setStore(customer.getStore());
         customer1.setChangePaymentBalance(changePaymentBalance);
+        customer1.setCustomerJob(customer.getCustomerJob());
         this.customerRepository.save(customer1);
     }
 }
