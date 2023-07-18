@@ -7,7 +7,7 @@
                 <th>고객 고유번호(UID)</th>
                 <th>성명</th>
                 <th>소속(신분)</th>
-                <th>이월금액</th>
+                <th>선수금잔액</th>
                 <th>기준일자</th>
                 <th>선수금 변동치</th>
             </tr>
@@ -15,7 +15,9 @@
         <tbody>
             <tr th:each="customer, loop : ${customerList}">
                 <td th:text="${loop.count}"></td>
-                <td th:text="${customer.customerId}"></td>
+                <td>
+                    <a th:href="@{|/customer/detail/${customer.customerId}|}" th:text="${customer.customerId}"></a>
+                </td>
                 <td th:text="${customer.customerName}"></td>
                 <td th:text="${customer.customerJob}"></td>
                 <td th:text="${customer.customerPaymentBalance}"></td>

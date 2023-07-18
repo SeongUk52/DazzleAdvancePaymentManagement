@@ -6,6 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.List;
@@ -18,7 +22,10 @@ public class CustomerService {
     public List<Customer> getList(){
         return this.customerRepository.findAll();
     }
-
+    public Page<Customer> getPageList(int page){
+        Pageable pageable = PageRequest.of(page,15);
+        return this.customerRepository.findAll(pageable);
+    }
     public List<Customer> getCustomerList(){
         List<Customer> customerList = this.customerRepository.findAll();
         int cusLen = customerList.toArray().length;
@@ -79,4 +86,5 @@ public class CustomerService {
         c.setCustomerDate(LocalDateTime.now());
         this.customerRepository.save(c);
     }
+
 }
