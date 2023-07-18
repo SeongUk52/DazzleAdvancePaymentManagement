@@ -18,7 +18,7 @@ public class CustomerController {
     @GetMapping("/customer/list")
     //@ResponseBody
     public String list(Model model){
-        List<Customer> customerList = this.customerService.getList();
+        List<Customer> customerList = this.customerService.getCustomerList();
         model.addAttribute("customerList",customerList);
         return "customer_list";
     }

@@ -17,6 +17,25 @@ public class CustomerService {
         return this.customerRepository.findAll();
     }
 
+    public List<Customer> getCustomerList(){
+        List<Customer> customerList = this.customerRepository.findAll();
+        if (customerList.toArray().length > 1) {
+            for (int i = 0; i < customerList.toArray().length; i++) {
+                for (int j = i; j<customerList.toArray().length;j++ ){
+                    if (customerList.get(i).getCustomerId() == customerList.get(j).getCustomerId()){
+                        if (customerList.get(i).getCustomerDate().isAfter(customerList.get(j).getCustomerDate())){
+                            customerList.remove(j);
+                        }
+                        else {
+                            customerList.remove(i);
+                        }
+                    }
+                }
+            }
+        }
+        return customerList;
+    }
+
     public List<Customer> getPersonalList(Integer id){
         List<Customer> customer = this.customerRepository.findByCustomerId(id);
         if (true){
