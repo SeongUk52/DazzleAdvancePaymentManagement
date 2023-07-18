@@ -1,0 +1,24 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container">
+  <h5 class="my-3 border-bottom pb-2">고객등록</h5>
+  <form th:action="@{/customer/create}" method="post">
+    <div class="mb-3">
+      <label for="customerId" class="form-label">고객 고유번호(ID)</label>
+      <input type="text" name="customerId" id="customerId" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="customerName" class="form-label">성명</label>
+      <input type="text" name="customerName" id="customerName" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="customerJob" class="form-label">소속(신분)</label>
+      <input type="text" name="customerJob" id="customerJob" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="customerPaymentBalance" class="form-label">소유 선수금</label>
+      <input type="text" name="customerPaymentBalance" id="customerPaymentBalance" class="form-control">
+    </div>
+    <input type="submit" value="저장하기" class="btn btn-primary my-2">
+  </form>
+</div>
+</html>

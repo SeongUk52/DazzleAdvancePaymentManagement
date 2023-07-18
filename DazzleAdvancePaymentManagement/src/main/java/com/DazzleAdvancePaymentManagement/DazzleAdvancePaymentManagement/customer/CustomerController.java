@@ -42,4 +42,15 @@ public class CustomerController {
         this.customerService.create(customer,changePaymentBalance);
         return String.format("redirect:/customer/detail/%s", id);
     }
+
+    @GetMapping("/customer/create")
+    public String customerCreate(){
+        return "customer_form";
+    }
+
+    @PostMapping("/customer/create")
+    public String customerCreate(@RequestParam Integer customerId, @RequestParam String customerName, @RequestParam String customerJob, @RequestParam Integer customerPaymentBalance){
+        this.customerService.createNewCustomer(customerId,customerName,customerJob,customerPaymentBalance);
+        return "redirect:/customer/list";
+    }
 }

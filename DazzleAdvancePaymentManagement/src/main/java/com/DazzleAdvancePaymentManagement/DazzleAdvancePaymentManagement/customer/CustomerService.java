@@ -1,8 +1,10 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.customer;
 
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.DataNotFoundException;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -67,5 +69,14 @@ public class CustomerService {
         customer1.setChangePaymentBalance(changePaymentBalance);
         customer1.setCustomerJob(customer.getCustomerJob());
         this.customerRepository.save(customer1);
+    }
+    public void createNewCustomer(Integer customerId,String customerName,String customerJob,Integer customerPaymentBalance){
+        Customer c = new Customer();
+        c.setCustomerId(customerId);
+        c.setCustomerName(customerName);
+        c.setCustomerJob(customerJob);
+        c.setCustomerPaymentBalance(customerPaymentBalance);
+        c.setCustomerDate(LocalDateTime.now());
+        this.customerRepository.save(c);
     }
 }

@@ -1,6 +1,5 @@
-<link rel="stylesheet" type="text/css" th:href="@{/customerStyle.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
-<div class="container my-3">
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
     <table class="table">
         <thead class="table-dark">
             <tr>
@@ -26,7 +25,8 @@
     </table>
 
     <form th:action="@{|/customer/create/${customerList.get(0).getCustomerId()}|}" method="post" class="my-3">
-        <textarea name="changePaymentBalance" id="changePaymentBalance" rows="1" class="form-control"></textarea>
+        <input name="changePaymentBalance" id="changePaymentBalance" class="form-control">
         <input type="submit" value="선수금 변동치 입력" class="btn btn-primary my-2">
     </form>
 </div>
+</html>

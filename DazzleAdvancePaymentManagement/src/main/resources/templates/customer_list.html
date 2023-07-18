@@ -1,9 +1,10 @@
-<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
-<div class="container my-3">
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
     <table class="table">
         <thead class="table-dark">
             <tr>
                 <th>번호</th>
+                <th>고객 고유번호(UID)</th>
                 <th>성명</th>
                 <th>소속(신분)</th>
                 <th>이월금액</th>
@@ -14,6 +15,7 @@
         <tbody>
             <tr th:each="customer, loop : ${customerList}">
                 <td th:text="${loop.count}"></td>
+                <td th:text="${customer.customerId}"></td>
                 <td th:text="${customer.customerName}"></td>
                 <td th:text="${customer.customerJob}"></td>
                 <td th:text="${customer.customerPaymentBalance}"></td>
@@ -22,4 +24,6 @@
             </tr>
         </tbody>
     </table>
+    <a th:href="@{/customer/create}" class="btn btn-primary">고객 등록하기</a>
 </div>
+</html>
