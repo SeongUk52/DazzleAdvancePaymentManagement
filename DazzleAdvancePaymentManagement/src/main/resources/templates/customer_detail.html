@@ -1,26 +1,32 @@
-<table>
-    <thead>
-    <tr>
-        <th>성명</th>
-        <th>소속(신분)</th>
-        <th>이월금액</th>
-        <th>기준일자</th>
-        <th>선수금 변동치</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="customer : ${customerList}">
-        <td th:text="${customer.customerName}"></td>
-        <td th:text="${customer.customerJob}"></td>
-        <td th:text="${customer.customerPaymentBalance}"></td>
-        <td th:text="${customer.customerDate}"></td>
-        <td th:text="${customer.changePaymentBalance}"></td>
+<link rel="stylesheet" type="text/css" th:href="@{/customerStyle.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<div class="container my-3">
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>번호</th>
+                <th>성명</th>
+                <th>소속(신분)</th>
+                <th>이월금액</th>
+                <th>기준일자</th>
+                <th>선수금 변동치</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="customer, loop : ${customerList}">
+                <td th:text="${loop.count}"></td>
+                <td th:text="${customer.customerName}"></td>
+                <td th:text="${customer.customerJob}"></td>
+                <td th:text="${customer.customerPaymentBalance}"></td>
+                <td th:text="${customer.customerDate}"></td>
+                <td th:text="${customer.changePaymentBalance}"></td>
 
-    </tr>
-    </tbody>
-</table>
+            </tr>
+        </tbody>
+    </table>
 
-<form th:action="@{|/customer/create/${customerList.get(0).getCustomerId()}|}" method="post">
-    <textarea name="changePaymentBalance" id="changePaymentBalance" rows="1"></textarea>
-    <input type="submit" value="선수금 변동치 입력">
-</form>
+    <form th:action="@{|/customer/create/${customerList.get(0).getCustomerId()}|}" method="post" class="my-3">
+        <textarea name="changePaymentBalance" id="changePaymentBalance" rows="1" class="form-control"></textarea>
+        <input type="submit" value="선수금 변동치 입력" class="btn btn-primary my-2">
+    </form>
+</div>

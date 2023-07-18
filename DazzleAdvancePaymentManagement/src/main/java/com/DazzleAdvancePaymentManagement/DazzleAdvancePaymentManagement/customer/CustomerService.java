@@ -19,20 +19,25 @@ public class CustomerService {
 
     public List<Customer> getCustomerList(){
         List<Customer> customerList = this.customerRepository.findAll();
-        if (customerList.toArray().length > 1) {
+        int cusLen = customerList.toArray().length;
+        if (cusLen > 1) {
             for (int i = 0; i < customerList.toArray().length; i++) {
-                for (int j = 0; j<customerList.toArray().length;j++ ){
+                for (int j = 0; j< customerList.toArray().length;j++ ){
                     if (customerList.get(i).getCustomerId() == customerList.get(j).getCustomerId()){
-                        if (customerList.get(i).getCustomerDate().isAfter(customerList.get(j).getCustomerDate())){
-                            customerList.remove(j);
-                        }
-                        else if(customerList.get(i).getCustomerDate().isBefore(customerList.get(j).getCustomerDate())) {
+                        if(customerList.get(i).getCustomerOrderId()<customerList.get(j).getCustomerOrderId()){
                             customerList.remove(i);
+                            j--;
                         }
+                        else if((customerList.get(i).getCustomerOrderId()>customerList.get(j).getCustomerOrderId())){
+                            customerList.remove(j);
+                            j--;
+                        }
+
                     }
                 }
             }
         }
+
         return customerList;
     }
 

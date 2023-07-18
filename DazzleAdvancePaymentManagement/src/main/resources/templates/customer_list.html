@@ -1,20 +1,25 @@
-<table>
-    <thead>
-    <tr>
-        <th>성명</th>
-        <th>소속(신분)</th>
-        <th>이월금액</th>
-        <th>기준일자</th>
-        <th>선수금 변동치</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="customer : ${customerList}">
-        <td th:text="${customer.customerName}"></td>
-        <td th:text="${customer.customerJob}"></td>
-        <td th:text="${customer.customerPaymentBalance}"></td>
-        <td th:text="${customer.customerDate}"></td>
-        <td th:text="${customer.changePaymentBalance}"></td>
-    </tr>
-    </tbody>
-</table>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<div class="container my-3">
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>번호</th>
+                <th>성명</th>
+                <th>소속(신분)</th>
+                <th>이월금액</th>
+                <th>기준일자</th>
+                <th>선수금 변동치</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="customer, loop : ${customerList}">
+                <td th:text="${loop.count}"></td>
+                <td th:text="${customer.customerName}"></td>
+                <td th:text="${customer.customerJob}"></td>
+                <td th:text="${customer.customerPaymentBalance}"></td>
+                <td th:text="${#temporals.format(customer.customerDate,'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${customer.changePaymentBalance}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
