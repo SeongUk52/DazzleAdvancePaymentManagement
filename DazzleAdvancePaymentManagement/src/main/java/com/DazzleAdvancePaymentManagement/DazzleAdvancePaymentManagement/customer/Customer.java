@@ -38,6 +38,11 @@ public class Customer {
 
     private Integer changePaymentBalance;
 
+    //당월 결재
+    private Integer customerMonthlyIn;
+    //당월 매출
+    private Integer customerMonthlyOut;
+
     @ManyToOne
     private Store store;
 

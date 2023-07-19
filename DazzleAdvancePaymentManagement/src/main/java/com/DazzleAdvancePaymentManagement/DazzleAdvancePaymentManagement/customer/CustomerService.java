@@ -79,7 +79,10 @@ public class CustomerService {
             throw new DataNotFoundException("customer not found");
         }
     }
+
+    //고객 선수금 입력(결재)
     public void create(Customer customer, Integer changePaymentBalance){
+        //customer는 고객의 가장 최근 기록임
         Customer customer1 = new Customer();
         customer1.setCustomerId(customer.getCustomerId());
         customer1.setCustomerName(customer.getCustomerName());
@@ -88,6 +91,13 @@ public class CustomerService {
         customer1.setStore(customer.getStore());
         customer1.setChangePaymentBalance(changePaymentBalance);
         customer1.setCustomerJob(customer.getCustomerJob());
+        customer1.setCustomerMonthlyOut(customer.getCustomerMonthlyOut());
+        if(LocalDateTime.now().getMonthValue()==customer.getCustomerDate().getMonthValue()){
+            customer1.setCustomerMonthlyIn(customer.getCustomerMonthlyIn()+changePaymentBalance);
+        }
+        else {
+            customer1.setCustomerMonthlyIn(changePaymentBalance);
+        }
         this.customerRepository.save(customer1);
     }
     public void createNewCustomer(Integer customerId,String customerName,String customerJob,Integer customerPaymentBalance){
@@ -96,6 +106,8 @@ public class CustomerService {
         c.setCustomerName(customerName);
         c.setCustomerJob(customerJob);
         c.setCustomerPaymentBalance(customerPaymentBalance);
+        c.setCustomerMonthlyIn(0);
+        c.setCustomerMonthlyOut(0);
         c.setCustomerDate(LocalDateTime.now());
         this.customerRepository.save(c);
     }

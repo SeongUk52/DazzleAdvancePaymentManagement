@@ -45,6 +45,14 @@ public class OrdersService {
         c.setCustomerDate(LocalDateTime.now());
         c.setCustomerPaymentBalance(customerLastOrder.getCustomerPaymentBalance()-changedPrice);
         c.setChangePaymentBalance(-changedPrice);
+        if(LocalDateTime.now().getMonthValue()==customerLastOrder.getCustomerDate().getMonthValue()){
+            c.setCustomerMonthlyIn(customerLastOrder.getCustomerMonthlyIn());
+            c.setCustomerMonthlyOut(customerLastOrder.getCustomerMonthlyOut()-changedPrice);
+        }
+        else {
+            c.setCustomerMonthlyIn(0);
+            c.setCustomerMonthlyOut(-changedPrice);
+        }
 
         this.customerRepository.save(c);
         this.ordersRepository.save(o);
