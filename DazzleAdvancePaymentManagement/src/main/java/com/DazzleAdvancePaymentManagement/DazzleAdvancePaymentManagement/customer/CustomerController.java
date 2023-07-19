@@ -18,9 +18,9 @@ public class CustomerController {
     private final CustomerService customerService;
     @GetMapping("/customer/list")
     //@ResponseBody
-    public String list(Model model){
-        List<Customer> customerList = this.customerService.getCustomerList();
-        model.addAttribute("customerList",customerList);
+    public String list(Model model, @RequestParam(value="page", defaultValue="0") int page){
+        Page<Customer> paging = this.customerService.getCustomerList(page);
+        model.addAttribute("paging",paging );
         return "customer_list";
     }
 
