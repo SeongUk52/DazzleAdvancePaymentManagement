@@ -19,7 +19,9 @@
         <td th:text="${goods.goodsCategory}"></td>
         <td th:text="${goods.goodsName}"></td>
         <td th:text="${goods.goodsIce}"></td>
-        <td th:text="${goods.goodsAmount}"></td>
+        <td>
+          <a th:href="@{|/goods/modify/${goods.goodsId}|}" th:text="${goods.goodsAmount}"></a>
+        </td>
         <td th:text="${#temporals.format(goods.goodsDate,'yyyy-MM-dd HH:mm')}"></td>
       </tr>
     </tbody>

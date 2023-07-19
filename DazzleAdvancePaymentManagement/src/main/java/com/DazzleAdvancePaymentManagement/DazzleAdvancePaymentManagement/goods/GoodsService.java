@@ -1,7 +1,9 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods;
 
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,14 @@ public class GoodsService {
         Pageable pageable = PageRequest.of(page, 15);
         return this.goodsRepository.findAll(pageable);
     }
+    public Goods getGoods(Integer id) {
+        Optional<Goods> goods = this.goodsRepository.findById(id);
+        if (goods.isPresent()) {
+            return goods.get();
+        } else {
+            throw new DataNotFoundException("goods not found");
+        }
+    }
     public void createNewGoods(String name, String category, Boolean ice, Integer amount, Integer price) {
         Goods g = new Goods();
         g.setGoodsName(name);
@@ -28,5 +38,14 @@ public class GoodsService {
         g.setGoodsPrice(price);
         g.setGoodsDate(LocalDateTime.now());
         this.goodsRepository.save(g);
+    }
+    public void modify(Goods goods, String name, String category, Boolean ice, Integer amount, Integer price){
+        goods.setGoodsName(name);
+        goods.setGoodsCategory(category);
+        goods.setGoodsIce(ice);
+        goods.setGoodsAmount(amount);
+        goods.setGoodsPrice(price);
+        goods.setGoodsDate(LocalDateTime.now());
+        this.goodsRepository.save(goods);
     }
 }

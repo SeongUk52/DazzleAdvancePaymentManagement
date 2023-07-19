@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
@@ -45,13 +47,16 @@ public class CustomerController {
     }
 
     @GetMapping("/customer/create")
-    public String customerCreate(){
+    public String customerCreate(CustomerForm customerForm){
         return "customer_form";
     }
 
     @PostMapping("/customer/create")
-    public String customerCreate(@RequestParam Integer customerId, @RequestParam String customerName, @RequestParam String customerJob, @RequestParam Integer customerPaymentBalance){
-        this.customerService.createNewCustomer(customerId,customerName,customerJob,customerPaymentBalance);
-        return "redirect:/customer/list";
+    public String customerCreate(@Valid CustomerForm customerForm, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "customer_form";
+        }
+        this.customerService.createNewCustomer(customerForm.getCustomerId(),customerForm.getCustomerName(),customerForm.getCustomerJob(),customerForm.getCustomerPaymentBalance());
+        return "redirect:/customer/list";//customerId,customerName,customerJob,customerPaymentBalance
     }
 }

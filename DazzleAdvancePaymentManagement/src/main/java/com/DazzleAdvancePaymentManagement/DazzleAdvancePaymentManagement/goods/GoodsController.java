@@ -1,13 +1,13 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 @RequestMapping("/goods")
 @RequiredArgsConstructor
@@ -24,13 +24,39 @@ public class GoodsController {
     }
 
     @GetMapping("/create")
-    public String goodsCreate(){
+    public String goodsCreate(GoodsForm goodsForm){
         return "goods_form";
     }
 
     @PostMapping("/create")
-    public String goodsCreate(@RequestParam String name, @RequestParam String category, @RequestParam Boolean ice, @RequestParam Integer amount, @RequestParam Integer price){
-        this.goodsService.createNewGoods(name,category,ice,amount,price);
+    public String goodsCreate(@Valid GoodsForm goodsForm, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "goods_form";
+        }
+        this.goodsService.createNewGoods(goodsForm.getGoodsName(),goodsForm.getGoodsCategory(),goodsForm.getGoodsIce(),goodsForm.getGoodsAmount(),goodsForm.getGoodsPrice());
+        //goodsName,goodsCategory,goodsIce,goodsAmount,goodsPrice
         return "redirect:/goods/list";
+    }
+
+    @GetMapping("/modify/{id}")
+    public String goodsModify(GoodsForm goodsForm,@PathVariable("id") Integer id){
+        Goods goods = this.goodsService.getGoods(id);
+        goodsForm.setGoodsName(goods.getGoodsName());
+        goodsForm.setGoodsCategory(goods.getGoodsCategory());
+        goodsForm.setGoodsIce(goods.getGoodsIce());
+        goodsForm.setGoodsAmount(goods.getGoodsAmount());
+        goodsForm.setGoodsPrice(goods.getGoodsPrice());
+
+        return "goods_form";
+    }
+
+    @PostMapping("/modify/{id}")
+    public String goodsModify(@Valid GoodsForm goodsForm, BindingResult bindingResult,@PathVariable("id") Integer id){
+        if (bindingResult.hasErrors()) {
+            return "goods_form";
+        }
+        Goods goods = this.goodsService.getGoods(id);
+        this.goodsService.modify(goods,goodsForm.getGoodsName(),goodsForm.getGoodsCategory(),goodsForm.getGoodsIce(),goodsForm.getGoodsAmount(),goodsForm.getGoodsPrice());
+        return String.format("redirect:/goods/list");
     }
 }
