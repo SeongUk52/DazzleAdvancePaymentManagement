@@ -3,8 +3,12 @@
   <h5 class="my-3 border-bottom pb-2">대즐 음료 주문서</h5>
   <form th:action="@{/orders/create}" method="post">
     <div class="mb-3">
-      <label for="customerName" class="form-label">주문자</label>
+      <label for="customerName" class="form-label">주문자 성명</label>
       <input type="text" name="customerName" id="customerName" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="customerJob" class="form-label">주문자 소속(신분)</label>
+      <input type="text" name="customerJob" id="customerJob" class="form-control">
     </div>
     <div class="mb-3">
       <label for="goodsName" class="form-label">상품명</label>

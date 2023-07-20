@@ -17,11 +17,13 @@ public class OrdersService {
     private final CustomerRepository customerRepository;
     private final GoodsRepository goodsRepository;
 
-    public void createNewOrders(String customerName,String goodsName,String goodsCategory,Boolean ice,Integer amount) {
+    public void createNewOrders(String customerName,String customerJob,String goodsName,String goodsCategory,Boolean ice,Integer amount) {
         Orders o = new Orders();
         Customer c = new Customer();//사용자 주문 생성
         Goods g = new Goods();
-        List<Customer> customerList = this.customerRepository.findByCustomerName(customerName);
+        List<Customer> customerList;
+        if(customerJob == null || customerJob == ""){customerList = this.customerRepository.findByCustomerName(customerName);}
+        else {customerList = this.customerRepository.findByCustomerNameAndCustomerJob(customerName,customerJob);}
         Customer customerLastOrder = customerList.get(customerList.size()-1);
         List<Goods> goodsListN = this.goodsRepository.findByGoodsName(goodsName);
         List<Goods> goodsListC = this.goodsRepository.findByGoodsCategory(goodsCategory);

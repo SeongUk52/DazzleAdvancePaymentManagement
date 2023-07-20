@@ -22,8 +22,8 @@ public class OrdersController {
     }
 
     @PostMapping("/create")
-    public String ordersCreate(@RequestParam String customerName,@RequestParam String goodsName, @RequestParam String goodsCategory, @RequestParam Boolean ice, @RequestParam Integer amount){
-        this.ordersService.createNewOrders(customerName,goodsName,goodsCategory,ice,amount);
-        return "redirect:/goods/create";
+    public String ordersCreate(@RequestParam String customerName,@RequestParam String customerJob,@RequestParam String goodsName, @RequestParam String goodsCategory, @RequestParam Boolean ice, @RequestParam Integer amount){
+        this.ordersService.createNewOrders(customerName,customerJob,goodsName,goodsCategory,ice,amount);
+        return "redirect:/orders/create";
     }
 }

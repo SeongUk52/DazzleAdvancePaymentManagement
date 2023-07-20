@@ -57,6 +57,15 @@ public class CustomerService {
             }
         }
 
+        //이전달 기록들 0으로 "표기" (값변경 x)
+        for (int i = 0; i < customerList.toArray().length; i++) {
+            if(customerList.get(i).getCustomerDate().getYear() <= LocalDateTime.now().getYear()){
+                if(customerList.get(i).getCustomerDate().getMonthValue()<LocalDateTime.now().getMonthValue()){
+                    customerList.get(i).setCustomerMonthlyIn(0);
+                    customerList.get(i).setCustomerMonthlyOut(0);
+                }
+            }
+        }
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), customerList.size());
         Page<Customer> customerPage = new PageImpl<>(customerList.subList(start, end), pageable, customerList.size());

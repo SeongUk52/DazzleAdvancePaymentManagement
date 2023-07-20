@@ -9,6 +9,7 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     List<Customer> findByCustomerName(String customerName);
     List<Customer> findByCustomerId(Integer customerId);
+    List<Customer> findByCustomerNameAndCustomerJob(String customerName,String customerJob);
     Page<Customer> findAll(Pageable pageable);
 
 }
