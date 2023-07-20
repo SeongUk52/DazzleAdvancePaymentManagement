@@ -1,6 +1,8 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.customer;
 
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.Goods;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.orders.Orders;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.orders.OrdersService;
 import org.springframework.web.bind.annotation.PathVariable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final OrdersService ordersService;
     @GetMapping("/customer/list")
     //@ResponseBody
     public String list(Model model, @RequestParam(value="page", defaultValue="0") int page){
@@ -33,12 +36,22 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/customer/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) {
+    public String customerDetail(Model model, @PathVariable("id") Integer id) {
         List<Customer> customerList = this.customerService.getPersonalList(id);
+        List<Orders> ordersList = this.ordersService.getPersonalOrderList(id);
         model.addAttribute("customerList",customerList);
+        model.addAttribute("ordersList",ordersList);
+        return "customer_detail";
+    }
+/*
+    @GetMapping(value = "/customer/detail/{id}")
+    public String ordersDetail(Model model, @PathVariable("id") Integer id) {
+        List<Orders> orderList = this.ordersService.getPersonalOrderList(id);
+        model.addAttribute("orderList",orderList);
         return "customer_detail";
     }
 
+ */
     @PostMapping("/customer/create/{id}")
     public String createPaymentChange(Model model,  @PathVariable("id") Integer id, @RequestParam Integer changePaymentBalance){
         List<Customer> customerList = this.customerService.getPersonalList(id);

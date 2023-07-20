@@ -17,7 +17,7 @@
                 <td th:text="${customer.customerName}"></td>
                 <td th:text="${customer.customerJob}"></td>
                 <td th:text="${customer.customerPaymentBalance}"></td>
-                <td th:text="${customer.customerDate}"></td>
+                <td th:text="${#temporals.format(customer.customerDate,'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="${customer.changePaymentBalance}"></td>
 
             </tr>
@@ -28,5 +28,30 @@
         <input name="changePaymentBalance" id="changePaymentBalance" class="form-control">
         <input type="submit" value="선수금 변동치 입력" class="btn btn-primary my-2">
     </form>
+
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th>상품명</th>
+            <th>상품 카테고리</th>
+            <th>얼음</th>
+            <th>수량</th>
+            <th>수량*가격</th>
+            <th>기준일자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orders, loop : ${ordersList}">
+            <td th:text="${orders.goods.goodsName}"></td>
+            <td th:text="${orders.goods.goodsCategory}"></td>
+            <td th:text="${orders.goods.goodsIce}"></td>
+            <td th:text="${orders.ordersAmount}"></td>
+            <td th:text="${orders.ordersPrice}"></td>
+            <td th:text="${#temporals.format(orders.ordersDate,'yyyy-MM-dd HH:mm')}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 </html>

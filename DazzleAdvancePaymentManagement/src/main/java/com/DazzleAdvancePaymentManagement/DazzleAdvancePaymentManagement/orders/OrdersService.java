@@ -1,5 +1,6 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.orders;
 
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.DataNotFoundException;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.customer.Customer;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.customer.CustomerRepository;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.Goods;
@@ -61,4 +62,19 @@ public class OrdersService {
         this.customerRepository.save(c);
         this.ordersRepository.save(o);
     }
+    public List<Orders> getPersonalOrderList(Integer id){
+        List<Customer> customerList = this.customerRepository.findByCustomerId(id);
+        List<Orders> ordersList = this.ordersRepository.findByCustomerCustomerOrderId(customerList.get(0).getCustomerOrderId());
+        if(customerList.toArray().length>1) {
+            for (int i = 1; i < customerList.toArray().length; i++) {
+                ordersList.addAll(this.ordersRepository.findByCustomerCustomerOrderId(customerList.get(i).getCustomerOrderId()));
+            }
+        }
+        if (true){
+            return ordersList;
+        } else {
+            throw new DataNotFoundException("orders not found");
+        }
+    }
+
 }

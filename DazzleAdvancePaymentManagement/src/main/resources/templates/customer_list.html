@@ -3,16 +3,6 @@
     <h1 id="current_date" style="color:black;">clock</h1>
 
     <script>
-        var Target = document.getElementById("current_date");
-        function currentDate() {
-            var time = new Date();
-            var year = time.getFullYear();
-            var month = time.getMonth();
-            Target.innerText =
-            `커피점 선수금 내역(${year}년 ${month + 1}월분)`;
-        }
-        currentDate();
-        //setInterval(clock, 1000); // 1초마다 실행
     </script>
     <table class="table">
         <thead class="table-dark">
@@ -41,13 +31,11 @@
                 <td th:text="${#temporals.format(customer.customerDate,'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="${customer.changePaymentBalance}"></td>
                 <td>
-                <td>
                     <a th:href="@{|/customer/detail/${customer.customerId}|}" class="btn btn-sm btn-outline-secondary"
                        th:text="상세"></a>
                     <a href="javascript:void(0);" th:data-uri="@{|/customer/delete/${customer.customerId}|}"
                        class="delete btn btn-sm btn-outline-secondary"
                        th:text="삭제"></a>
-                </td>
                 </td>
             </tr>
         </tbody>
@@ -78,6 +66,16 @@
     <a th:href="@{/customer/create}" class="btn btn-primary">고객 등록하기</a>
 </div>
 <script layout:fragment="script" type='text/javascript'>
+var Target = document.getElementById("current_date");
+function currentDate() {
+    var time = new Date();
+    var year = time.getFullYear();
+    var month = time.getMonth();
+    Target.innerText =
+    `커피점 선수금 내역(${year}년 ${month + 1}월분)`;
+    }
+    currentDate();
+    //setInterval(clock, 1000); // 1초마다 실행
 const delete_elements = document.getElementsByClassName("delete");
 Array.from(delete_elements).forEach(function(element) {
     element.addEventListener('click', function() {

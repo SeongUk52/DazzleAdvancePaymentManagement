@@ -1,8 +1,12 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.orders;
 
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.customer.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/orders")
 @RequiredArgsConstructor
@@ -16,6 +20,8 @@ public class OrdersController {
     public String list(){
         return "order list";
     }
+
+
     @GetMapping("/create")
     public String ordersCreate(){
         return "orders_form";
