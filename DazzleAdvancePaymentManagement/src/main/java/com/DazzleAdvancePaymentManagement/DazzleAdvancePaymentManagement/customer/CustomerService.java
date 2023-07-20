@@ -2,6 +2,7 @@ package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.custom
 
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.DataNotFoundException;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.Store;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.Goods;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,10 @@ public class CustomerService {
     public Page<Customer> getPageList(int page){
         Pageable pageable = PageRequest.of(page,15);
         return this.customerRepository.findAll(pageable);
+    }
+
+    public void delete(Customer customer) {
+        this.customerRepository.delete(customer);
     }
     public Page<Customer> getCustomerList(int page){
         List<Customer> customerList = this.customerRepository.findAll();

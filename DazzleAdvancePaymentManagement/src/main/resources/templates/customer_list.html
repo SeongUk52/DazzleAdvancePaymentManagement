@@ -17,7 +17,6 @@
     <table class="table">
         <thead class="table-dark">
             <tr>
-                <th>번호</th>
                 <th>고객 UID</th>
                 <th>성명</th>
                 <th>소속(신분)</th>
@@ -27,14 +26,12 @@
                 <th>선수금잔액</th>
                 <th>기준일자</th>
                 <th>최근 선수금 변동치</th>
+                <th>버튼</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="customer, loop : ${paging}">
-                <td th:text="${loop.count}"></td>
-                <td>
-                    <a th:href="@{|/customer/detail/${customer.customerId}|}" th:text="${customer.customerId}"></a>
-                </td>
+                <td th:text="${customer.customerId}"></td>
                 <td th:text="${customer.customerName}"></td>
                 <td th:text="${customer.customerJob}"></td>
                 <td th:text="${customer.customerPaymentBalance}-${customer.customerMonthlyIn}-${customer.customerMonthlyOut}"></td>
@@ -43,6 +40,15 @@
                 <td th:text="${customer.customerPaymentBalance}"></td>
                 <td th:text="${#temporals.format(customer.customerDate,'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="${customer.changePaymentBalance}"></td>
+                <td>
+                <td>
+                    <a th:href="@{|/customer/detail/${customer.customerId}|}" class="btn btn-sm btn-outline-secondary"
+                       th:text="상세"></a>
+                    <a href="javascript:void(0);" th:data-uri="@{|/customer/delete/${customer.customerId}|}"
+                       class="delete btn btn-sm btn-outline-secondary"
+                       th:text="삭제"></a>
+                </td>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -71,4 +77,14 @@
     <!-- 페이징처리 끝 -->
     <a th:href="@{/customer/create}" class="btn btn-primary">고객 등록하기</a>
 </div>
+<script layout:fragment="script" type='text/javascript'>
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+</script>
 </html>

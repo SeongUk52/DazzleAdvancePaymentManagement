@@ -3,6 +3,7 @@ package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goodsLog.GoodsLog;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.orders.Orders;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.Store;
 import jakarta.persistence.ManyToOne;
@@ -45,4 +46,7 @@ public class Goods {
 
     @OneToMany(mappedBy = "goods", cascade = CascadeType.REMOVE)
     private List<Orders> ordersList;
+
+    @OneToMany(mappedBy = "goods", cascade = CascadeType.REMOVE)
+    private List<GoodsLog> goodsLogList;
 }

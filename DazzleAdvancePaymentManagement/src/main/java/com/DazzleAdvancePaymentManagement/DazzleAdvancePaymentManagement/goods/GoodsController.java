@@ -57,6 +57,14 @@ public class GoodsController {
         }
         Goods goods = this.goodsService.getGoods(id);
         this.goodsService.modify(goods,goodsForm.getGoodsName(),goodsForm.getGoodsCategory(),goodsForm.getGoodsIce(),goodsForm.getGoodsAmount(),goodsForm.getGoodsPrice());
-        return String.format("redirect:/goods/list");
+        return "redirect:/goods/list";
     }
+
+    @GetMapping("/delete/{id}")
+    public String goodsDelete(@PathVariable("id") Integer id) {
+        Goods goods = this.goodsService.getGoods(id);
+        this.goodsService.delete(goods);
+        return "redirect:/goods/list";
+    }
+
 }

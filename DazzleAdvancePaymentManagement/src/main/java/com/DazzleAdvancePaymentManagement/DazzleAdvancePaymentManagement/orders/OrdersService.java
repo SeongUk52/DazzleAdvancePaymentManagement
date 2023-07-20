@@ -56,6 +56,8 @@ public class OrdersService {
             c.setCustomerMonthlyOut(-changedPrice);
         }
 
+        o.setGoods(g);
+        o.setCustomer(c);
         this.customerRepository.save(c);
         this.ordersRepository.save(o);
     }

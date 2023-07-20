@@ -1,5 +1,6 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.customer;
 
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.Goods;
 import org.springframework.web.bind.annotation.PathVariable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -58,5 +59,14 @@ public class CustomerController {
         }
         this.customerService.createNewCustomer(customerForm.getCustomerId(),customerForm.getCustomerName(),customerForm.getCustomerJob(),customerForm.getCustomerPaymentBalance());
         return "redirect:/customer/list";//customerId,customerName,customerJob,customerPaymentBalance
+    }
+
+    @GetMapping("/customer/delete/{id}")
+    public String customerDelete(@PathVariable("id") Integer id) {
+        List<Customer> customerList = this.customerService.getPersonalList(id);
+        for(int i=0; i < customerList.toArray().length;i++){
+            this.customerService.delete(customerList.get(i));
+        }
+        return "redirect:/";
     }
 }
