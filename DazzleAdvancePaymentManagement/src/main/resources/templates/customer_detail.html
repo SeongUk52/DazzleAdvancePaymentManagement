@@ -1,14 +1,33 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content" class="container my-3">
+    <style>
+      div.row {
+        width: 100%;
+        display: flex;
+      }
+      div.left {
+        width: 50%;
+        float: left;
+        box-sizing: border-box;
+      }
+      div.right {
+        width: 50%;
+        float: right;
+        box-sizing: border-box;
+      }
+    </style>
+    <div class="row">
+        <div class="left">
+            <h3>개인별 선수금 변동 내역</h3>
     <table class="table">
         <thead class="table-dark">
             <tr>
                 <th>번호</th>
                 <th>성명</th>
                 <th>소속(신분)</th>
-                <th>현재 선수금</th>
                 <th>기준일자</th>
                 <th>선수금 변동치</th>
+                <th>현재 선수금</th>
             </tr>
         </thead>
         <tbody>
@@ -16,9 +35,9 @@
                 <td th:text="${loop.count}"></td>
                 <td th:text="${customer.customerName}"></td>
                 <td th:text="${customer.customerJob}"></td>
-                <td th:text="${customer.customerPaymentBalance}"></td>
                 <td th:text="${#temporals.format(customer.customerDate,'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="${customer.changePaymentBalance}"></td>
+                <td th:text="${customer.customerPaymentBalance}"></td>
 
             </tr>
         </tbody>
@@ -28,7 +47,9 @@
         <input name="changePaymentBalance" id="changePaymentBalance" class="form-control">
         <input type="submit" value="선수금 변동치 입력" class="btn btn-primary my-2">
     </form>
-
+        </div>
+        <div class="right">
+            <h3>개인별 음료주문 내역</h3>
     <table class="table">
         <thead class="table-dark">
         <tr>
@@ -36,8 +57,8 @@
             <th>상품 카테고리</th>
             <th>얼음</th>
             <th>수량</th>
-            <th>수량*가격</th>
             <th>기준일자</th>
+            <th>수량*가격</th>
         </tr>
         </thead>
         <tbody>
@@ -46,12 +67,14 @@
             <td th:text="${orders.goods.goodsCategory}"></td>
             <td th:text="${orders.goods.goodsIce}"></td>
             <td th:text="${orders.ordersAmount}"></td>
-            <td th:text="${orders.ordersPrice}"></td>
             <td th:text="${#temporals.format(orders.ordersDate,'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${orders.ordersPrice}"></td>
 
         </tr>
         </tbody>
     </table>
+        </div>
+    </div>
 
 </div>
 </html>

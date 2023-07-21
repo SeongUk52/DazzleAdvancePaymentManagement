@@ -3,6 +3,13 @@ package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.custom
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.Goods;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.orders.Orders;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.orders.OrdersService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.PathVariable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,6 +21,7 @@ import org.springframework.data.domain.Page;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -81,5 +89,11 @@ public class CustomerController {
             this.customerService.delete(customerList.get(i));
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/customer/excel")
+    public void excelDownload(HttpServletResponse response, HttpServletRequest req) throws IOException {
+        List<Customer> customerList = this.customerService.getCustomerList();
+        this.customerService.excelDownload(response,req,customerList);
     }
 }
