@@ -21,6 +21,12 @@ public class GoodsService {
         Pageable pageable = PageRequest.of(page, 15);
         return this.goodsRepository.findAll(pageable);
     }
+    public List<Goods> getList() {
+        return this.goodsRepository.findAll();
+    }
+    public Optional<Goods> getById(int id){
+        return this.goodsRepository.findById(id);
+    }
 
     public void delete(Goods goods) {
         this.goodsRepository.delete(goods);

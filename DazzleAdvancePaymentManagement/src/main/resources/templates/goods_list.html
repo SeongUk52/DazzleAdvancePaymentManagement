@@ -23,6 +23,10 @@
         <td th:text="${goods.goodsPrice}"></td>
         <td th:text="${#temporals.format(goods.goodsDate,'yyyy-MM-dd HH:mm')}"></td>
         <td>
+          <form th:action="@{|/goods/storeAdd/${goods.goodsId}|}" method="post" >
+            <input name="changeGoodsAmount" id="changeGoodsAmount">
+            <input type="submit" value="입고" class="btn btn-sm btn-outline-secondary">
+          </form>
           <a th:href="@{|/goods/modify/${goods.goodsId}|}" class="btn btn-sm btn-outline-secondary"
              th:text="수정"></a>
           <a href="javascript:void(0);" th:data-uri="@{|/goods/delete/${goods.goodsId}|}"

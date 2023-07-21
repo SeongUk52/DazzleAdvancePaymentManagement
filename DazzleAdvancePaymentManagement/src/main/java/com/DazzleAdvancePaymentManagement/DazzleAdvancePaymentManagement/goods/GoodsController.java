@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 
+import java.util.List;
+import java.util.Optional;
+
 @RequestMapping("/goods")
 @RequiredArgsConstructor
 @Controller
@@ -67,4 +70,14 @@ public class GoodsController {
         return "redirect:/goods/list";
     }
 
+    @PostMapping("/storeAdd/{id}")
+    public String storeAdd(Model model,  @PathVariable("id") Integer id, @RequestParam Integer changeGoodsAmount){
+        Optional<Goods> goodsOptional = this.goodsService.getById(id);
+        Goods goods = goodsOptional.get();
+        //this.customerService.create(customer,changePaymentBalance);
+        //Goods 변환
+        this.goodsService.modify(goods,goods.getGoodsName(),goods.getGoodsCategory(),goods.getGoodsIce(),goods.getGoodsAmount()+changeGoodsAmount,goods.getGoodsPrice());
+        //GoodsLog 생성
+        return "redirect:/goods/list";
+    }
 }
