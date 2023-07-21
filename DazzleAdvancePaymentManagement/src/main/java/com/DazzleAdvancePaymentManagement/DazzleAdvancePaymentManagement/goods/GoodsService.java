@@ -18,7 +18,7 @@ public class GoodsService {
     private final GoodsRepository goodsRepository;
 
     public Page<Goods> getList(int page) {
-        Pageable pageable = PageRequest.of(page, 15);
+        Pageable pageable = PageRequest.of(page, 10);
         return this.goodsRepository.findAll(pageable);
     }
     public List<Goods> getList() {
