@@ -20,6 +20,8 @@ public class GoodsLog {
 
     private Integer goodsLogChange;
 
+    private String goodsLogWho;
+
     private Integer goodsLogNow;
 
     private LocalDateTime goodsLogTime;

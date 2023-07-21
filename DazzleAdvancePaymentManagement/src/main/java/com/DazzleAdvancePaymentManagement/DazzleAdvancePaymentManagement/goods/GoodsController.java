@@ -1,5 +1,6 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods;
 
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goodsLog.GoodsLogService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class GoodsController {
 
     private final GoodsService goodsService;
+    private final GoodsLogService goodsLogService;
 
     @GetMapping("/list")
     public String list(Model model,@RequestParam(value="page", defaultValue="0") int page){
@@ -78,6 +80,7 @@ public class GoodsController {
         //Goods 변환
         this.goodsService.modify(goods,goods.getGoodsName(),goods.getGoodsCategory(),goods.getGoodsIce(),goods.getGoodsAmount()+changeGoodsAmount,goods.getGoodsPrice());
         //GoodsLog 생성
+        this.goodsLogService.createNewGoodsLog("입고",changeGoodsAmount,goods.getGoodsAmount(),goods);
         return "redirect:/goods/list";
     }
 }

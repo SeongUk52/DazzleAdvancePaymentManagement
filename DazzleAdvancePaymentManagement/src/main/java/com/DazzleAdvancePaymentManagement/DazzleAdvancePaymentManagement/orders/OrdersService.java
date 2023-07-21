@@ -5,6 +5,9 @@ import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.custome
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.customer.CustomerRepository;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.Goods;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.GoodsRepository;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.GoodsService;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goodsLog.GoodsLog;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goodsLog.GoodsLogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +20,13 @@ public class OrdersService {
     private final OrdersRepository ordersRepository;
     private final CustomerRepository customerRepository;
     private final GoodsRepository goodsRepository;
+    private final GoodsLogService goodsLogService;
 
     public void createNewOrders(String customerName,String customerJob,String goodsName,String goodsCategory,Boolean ice,Integer amount) {
         Orders o = new Orders();
         Customer c = new Customer();//사용자 주문 생성
         Goods g = new Goods();
+        GoodsLog gl = new GoodsLog();
         List<Customer> customerList;
         if(customerJob == null || customerJob == ""){customerList = this.customerRepository.findByCustomerName(customerName);}
         else {customerList = this.customerRepository.findByCustomerNameAndCustomerJob(customerName,customerJob);}
@@ -36,6 +41,7 @@ public class OrdersService {
         g = goodsListN.get(0);
 
         g.setGoodsAmount(g.getGoodsAmount()-amount);
+        this.goodsLogService.createNewGoodsLog(customerName,-amount,g.getGoodsAmount(),g);
 
         o.setOrdersDate(LocalDateTime.now());
         o.setOrdersAmount(amount);

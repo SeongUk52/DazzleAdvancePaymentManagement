@@ -32,6 +32,8 @@
           <a href="javascript:void(0);" th:data-uri="@{|/goods/delete/${goods.goodsId}|}"
              class="delete btn btn-sm btn-outline-secondary"
              th:text="삭제"></a>
+          <a th:href="@{|/goodsLog/${goods.goodsId}|}" class="btn btn-sm btn-outline-secondary"
+             th:text="재고내역"></a>
         </td>
       </tr>
     </tbody>

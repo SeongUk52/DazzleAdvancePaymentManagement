@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th>번호</th>
+            <th>주문자/입고</th>
+            <th>변동치</th>
+            <th>변경 후 재고</th>
+            <th>기준일자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="goodsLog, loop : ${goodsLogList}">
+            <td th:text="${loop.count}"></td>
+            <td th:text="${goodsLog.goodsLogWho}"></td>
+            <td th:text="${goodsLog.goodsLogChange}"></td>
+            <td th:text="${goodsLog.goodsLogNow}"></td>
+            <td th:text="${#temporals.format(goodsLog.goodsLogTime,'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </html>
