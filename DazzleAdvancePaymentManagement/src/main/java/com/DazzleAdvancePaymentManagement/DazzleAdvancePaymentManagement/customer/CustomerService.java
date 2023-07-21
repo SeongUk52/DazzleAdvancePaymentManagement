@@ -175,6 +175,8 @@ public class CustomerService {
         this.customerRepository.save(c);
     }
 
+
+    //엑셀파일 다운로드 기능
     public void excelDownload(HttpServletResponse response,HttpServletRequest req,List<Customer> customerList) throws IOException {
         //        Workbook wb = new HSSFWorkbook();
         Workbook wb = new XSSFWorkbook();
@@ -197,31 +199,48 @@ public class CustomerService {
         defaultStyle.setWrapText(true);
         cell.setCellStyle(defaultStyle);
         cell.setCellValue("커피점 선수금 내역("+LocalDateTime.now().getYear()+"년 "+LocalDateTime.now().getMonthValue()+"월 분)");
-
+        for(int i =1; i<8;i++){
+            row.createCell(i).setCellStyle(defaultStyle);
+        }
         row = sheet.createRow(rowNum++);
         cell = row.createCell(7);
+        cell.setCellStyle(defaultStyle);
         cell.setCellValue("단위:원");
 
-        for(int i =0; i<8;i++){
-            sheet.setColumnWidth(i,3000);
+        for(int i =0; i<7;i++){
+            sheet.setColumnWidth(i,3500);
+            row.createCell(i).setCellStyle(defaultStyle);
         }
         row = sheet.createRow(rowNum++);
         cell = row.createCell(0);
+        cell.setCellStyle(defaultStyle);
         cell.setCellValue("고객번호");
         cell = row.createCell(1);
+        cell.setCellStyle(defaultStyle);
         cell.setCellValue("성명");
         cell = row.createCell(2);
+        cell.setCellStyle(defaultStyle);
         cell.setCellValue("소속(신분)");
         cell = row.createCell(3);
+        cell.setCellStyle(defaultStyle);
         cell.setCellValue("이월금액");
         cell = row.createCell(4);
+        cell.setCellStyle(defaultStyle);
         cell.setCellValue("당월결재금액");
         cell = row.createCell(5);
+        cell.setCellStyle(defaultStyle);
         cell.setCellValue("당월매출금");
         cell = row.createCell(6);
+        cell.setCellStyle(defaultStyle);
         cell.setCellValue("선수금잔액");
         cell = row.createCell(7);
+        cell.setCellStyle(defaultStyle);
         cell.setCellValue("비고");
+
+        long totalIn = 0;
+        long totalOut = 0;
+        long totalPaymentPre = 0;
+        long totalPaymentNow = 0;
 
         // Body
         for (int i=0; i<customerList.toArray().length; i++) {
@@ -229,23 +248,57 @@ public class CustomerService {
             Customer thisCustomer = customerList.get(i);
             int cIn = thisCustomer.getCustomerMonthlyIn();
             int cOut = thisCustomer.getCustomerMonthlyOut();
+            totalIn += cIn;totalOut += cOut;
+            totalPaymentNow += thisCustomer.getCustomerPaymentBalance();
+            totalPaymentPre += thisCustomer.getCustomerPaymentBalance()-cIn-cOut;
             cell = row.createCell(0);
+            cell.setCellStyle(defaultStyle);
             cell.setCellValue(thisCustomer.getCustomerId());
             cell = row.createCell(1);
+            cell.setCellStyle(defaultStyle);
             cell.setCellValue(thisCustomer.getCustomerName());
             cell = row.createCell(2);
+            cell.setCellStyle(defaultStyle);
             cell.setCellValue(thisCustomer.getCustomerJob());
             cell = row.createCell(3);
+            cell.setCellStyle(defaultStyle);
             cell.setCellValue(thisCustomer.getCustomerPaymentBalance()-cIn-cOut);
             cell = row.createCell(4);
+            cell.setCellStyle(defaultStyle);
             cell.setCellValue(thisCustomer.getCustomerMonthlyIn());
             cell = row.createCell(5);
+            cell.setCellStyle(defaultStyle);
             cell.setCellValue(thisCustomer.getCustomerMonthlyOut());
             cell = row.createCell(6);
+            cell.setCellStyle(defaultStyle);
             cell.setCellValue(thisCustomer.getCustomerPaymentBalance());
             cell = row.createCell(7);
+            cell.setCellStyle(defaultStyle);
             cell.setCellValue("");
         }
+        //합계
+        row = sheet.createRow(rowNum);
+        sheet.addMergedRegion(new CellRangeAddress(rowNum,rowNum,0,2));rowNum++;
+        cell = row.createCell(0);
+        cell.setCellStyle(defaultStyle);
+        row.createCell(1).setCellStyle(defaultStyle);
+        row.createCell(2).setCellStyle(defaultStyle);
+        cell.setCellValue("합계");
+        cell = row.createCell(3);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue(totalPaymentPre);
+        cell = row.createCell(4);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue(totalIn);
+        cell = row.createCell(5);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue(totalOut);
+        cell = row.createCell(6);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue(totalPaymentNow);
+        cell = row.createCell(7);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("");
 
         // 컨텐츠 타입과 파일명 지정
         String fileNm = LocalDateTime.now().getYear()+"년"+LocalDateTime.now().getMonthValue()+"월 대즐 선수금 관리대장.xlsx";
