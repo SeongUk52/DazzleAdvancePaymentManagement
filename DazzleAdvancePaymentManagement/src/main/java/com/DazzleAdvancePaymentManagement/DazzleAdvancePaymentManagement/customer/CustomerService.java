@@ -3,6 +3,7 @@ package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.custom
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.DataNotFoundException;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.Store;
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods.Goods;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.orders.Orders;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -359,5 +360,182 @@ public class CustomerService {
         } else{
             return null;
         }
+    }
+
+    public void personalExcelDownload(HttpServletResponse response, HttpServletRequest req, List<Customer> customerList, List<Orders> ordersList) throws IOException {
+        //        Workbook wb = new HSSFWorkbook();
+        Workbook wb = new XSSFWorkbook();
+        Sheet sheet = wb.createSheet(customerList.get(0).getCustomerName()+"님의 선수금 내역");
+        Row row = null;
+        Cell cell = null;
+        int rowNum = 0;
+        CellStyle defaultStyle = wb.createCellStyle();
+
+        // 테두리 설정
+        defaultStyle.setBorderTop(BorderStyle.MEDIUM);
+        defaultStyle.setBorderLeft(BorderStyle.MEDIUM);
+        defaultStyle.setBorderRight(BorderStyle.MEDIUM);
+        defaultStyle.setBorderBottom(BorderStyle.MEDIUM);
+
+        // Header
+        sheet.addMergedRegion(new CellRangeAddress(0,0,0,12));
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        defaultStyle.setWrapText(true);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue(customerList.get(0).getCustomerName()+"님의 선수금 내역("+LocalDateTime.now().getYear()+"년 "+LocalDateTime.now().getMonthValue()+"월 분)");
+        for(int i =1; i<13;i++){
+            row.createCell(i).setCellStyle(defaultStyle);
+        }
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        cell.setCellValue(LocalDateTime.now().getYear()+"년 "+LocalDateTime.now().getMonthValue()+"월 기준");
+
+        cell = row.createCell(1);
+        cell.setCellValue("성함:");
+        cell = row.createCell(2);
+        cell.setCellValue(customerList.get(0).getCustomerName());
+        cell = row.createCell(3);
+        cell.setCellValue("소속:");
+        cell = row.createCell(4);
+        cell.setCellValue(customerList.get(0).getCustomerJob());
+
+        sheet.setColumnWidth(0,4000);   //셀 너비설정
+        for(int i =1; i<13;i++){
+            sheet.setColumnWidth(i,3500);   //셀 너비설정
+        }
+        sheet.setColumnWidth(6,4500);   //셀 너비설정
+        sheet.addMergedRegion(new CellRangeAddress(rowNum,rowNum,0,3));
+        sheet.addMergedRegion(new CellRangeAddress(rowNum,rowNum,5,12));
+        row = sheet.createRow(rowNum++);
+        cell = row.createCell(0);
+        defaultStyle.setWrapText(true);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("개인별 선수금 변동내역");
+        for(int i =1; i<4;i++){
+            row.createCell(i).setCellStyle(defaultStyle);
+        }
+
+        cell = row.createCell(5);
+        defaultStyle.setWrapText(true);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("개인별 음료주문 내역");
+        for(int i =6; i<13;i++){
+            row.createCell(i).setCellStyle(defaultStyle);
+        }
+
+        row = sheet.createRow(rowNum++);
+        //개인별 선수금 변동내역 헤더
+        cell = row.createCell(0);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("번호");
+        cell = row.createCell(1);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("기준시간");
+        cell = row.createCell(2);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("선수금 입금");
+        cell = row.createCell(3);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("선수금 잔액");
+
+        //개인별 음료주문내역 헤더
+
+        cell = row.createCell(5);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("번호");
+        cell = row.createCell(6);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("상품명");
+        cell = row.createCell(7);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("상품 카테고리");
+        cell = row.createCell(8);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("얼음");
+        cell = row.createCell(9);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("수량");
+        cell = row.createCell(10);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("기준 시간");
+        cell = row.createCell(11);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("총가격");
+        cell = row.createCell(12);
+        cell.setCellStyle(defaultStyle);
+        cell.setCellValue("선수금 잔액");
+
+
+        int bodyRow = rowNum;
+        // 개인별 선수금 변동 내역 Body
+        //customerList 월간으로 변경할 필요 있음(추후 변경)
+        for (int i=0; i<customerList.toArray().length; i++) {
+            row = sheet.createRow(rowNum++);
+            Customer thisCustomer = customerList.get(i);
+            cell = row.createCell(0);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(i);
+            cell = row.createCell(1);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(thisCustomer.getCustomerDate().getYear()+"년"+thisCustomer.getCustomerDate().getMonthValue()+"월"+thisCustomer.getCustomerDate().getDayOfMonth()+"일");
+            cell = row.createCell(2);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(thisCustomer.getChangePaymentBalance());
+            cell = row.createCell(3);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(thisCustomer.getCustomerPaymentBalance());
+        }
+
+
+        rowNum=bodyRow;
+        // 개인별 음료주문 내역 Body
+        //orderList 월간으로 변경할 필요 있음(추후 변경)
+        for (int i=0; i<ordersList.toArray().length; i++) {
+            row=sheet.getRow(rowNum++);
+            Orders thisOrder = ordersList.get(i);
+            cell = row.createCell(5);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(i);
+            cell = row.createCell(6);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(thisOrder.getGoods().getGoodsName()); //상품명
+            cell = row.createCell(7);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(thisOrder.getGoods().getGoodsCategory());  //상품 카테고리
+            cell = row.createCell(8);
+            cell.setCellStyle(defaultStyle);
+            String ice = "";
+            if(thisOrder.getGoods().getGoodsIce()){ice = "아이스"; }
+            else {ice = "핫";}
+            cell.setCellValue(ice);    //얼음
+            cell = row.createCell(9);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(thisOrder.getOrdersAmount());    //수량
+            cell = row.createCell(10);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(thisOrder.getOrdersDate().getYear()+"년"+thisOrder.getOrdersDate().getMonthValue()+"월"+thisOrder.getOrdersDate().getDayOfMonth()+"일");    //시간
+            cell = row.createCell(11);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(thisOrder.getOrdersPrice());    //총가격
+            cell = row.createCell(12);
+            cell.setCellStyle(defaultStyle);
+            cell.setCellValue(thisOrder.getCustomer().getCustomerPaymentBalance());    //선수금잔액
+        }
+
+
+
+        // 컨텐츠 타입과 파일명 지정
+        String fileNm = LocalDateTime.now().getYear()+"년"+LocalDateTime.now().getMonthValue()+"월"+customerList.get(0).getCustomerName()+"님의 선수금내역.xlsx";
+        String browser = getBrowser(req);
+        response.setContentType("ms-vnd/excel; charset=UTF-8");
+//        response.setHeader("Content-Disposition", "attachment;filename=example.xls");
+        response.setHeader("Content-Description", "file download");
+        response.setHeader("Content-Disposition", "attachment; filename=\"".concat(getFileNm(browser, fileNm)).concat("\""));
+        response.setHeader("Content-Transfer-Encoding", "binary");
+
+        // Excel File Output
+        wb.write(response.getOutputStream());
+        wb.close();
     }
 }

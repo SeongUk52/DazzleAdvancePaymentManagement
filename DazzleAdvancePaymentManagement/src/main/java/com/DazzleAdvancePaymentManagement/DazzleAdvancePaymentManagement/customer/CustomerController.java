@@ -96,4 +96,11 @@ public class CustomerController {
         List<Customer> customerList = this.customerService.getCustomerList();
         this.customerService.excelDownload(response,req,customerList);
     }
+
+    @GetMapping("/customer/excel/{id}")
+    public void personalExcelDownload(@PathVariable("id") Integer id, HttpServletResponse response, HttpServletRequest req) throws IOException {
+        List<Customer> customerList = this.customerService.getPersonalList(id);
+        List<Orders> ordersList = this.ordersService.getPersonalOrderList(id);
+        this.customerService.personalExcelDownload(response,req,customerList,ordersList);
+    }
 }
