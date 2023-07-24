@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -22,24 +23,19 @@ public class OrdersService {
     private final GoodsRepository goodsRepository;
     private final GoodsLogService goodsLogService;
 
-    public void createNewOrders(String customerName,String customerJob,String goodsName,String goodsCategory,Boolean ice,Integer amount) {
+    public void createNewOrders(String customerName,String customerJob,Integer goodsId,Integer amount) {
         Orders o = new Orders();
         Customer c = new Customer();//사용자 주문 생성
-        Goods g = new Goods();
         GoodsLog gl = new GoodsLog();
         List<Customer> customerList;
         if(customerJob == null || customerJob == ""){customerList = this.customerRepository.findByCustomerName(customerName);}
         else {customerList = this.customerRepository.findByCustomerNameAndCustomerJob(customerName,customerJob);}
+        if(customerList.isEmpty()){throw new DataNotFoundException("customer not found");}
         Customer customerLastOrder = customerList.get(customerList.size()-1);
-        List<Goods> goodsListN = this.goodsRepository.findByGoodsName(goodsName);
-        List<Goods> goodsListC = this.goodsRepository.findByGoodsCategory(goodsCategory);
-        List<Goods> goodsListI = this.goodsRepository.findByGoodsIce(ice);
-
-        //리스트 교집함
-        goodsListN.retainAll(goodsListC);
-        goodsListN.retainAll(goodsListI);
-        g = goodsListN.get(0);
-
+        //Goods g = this.goodsRepository.findByGoodsNameAndGoodsCategoryAndGoodsIce(goodsName,goodsCategory,ice);
+        Optional<Goods> gop = this.goodsRepository.findByGoodsId(goodsId);
+        Goods g = gop.get();
+        if(g==null){throw new DataNotFoundException("goods not found");}
         g.setGoodsAmount(g.getGoodsAmount()-amount);
         this.goodsLogService.createNewGoodsLog(customerName,-amount,g.getGoodsAmount(),g);
 

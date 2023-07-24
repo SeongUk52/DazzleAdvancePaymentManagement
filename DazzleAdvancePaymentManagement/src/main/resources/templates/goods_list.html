@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       <tr th:each="goods, loop : ${paging}">
-        <td th:text="${loop.count}"></td>
+        <td th:text="${(paging.number * paging.size) + loop.index}"></td>
         <td th:text="${goods.goodsCategory}"></td>
         <td th:text="${goods.goodsName}"></td>
         <td th:text="${goods.goodsIce}"></td>

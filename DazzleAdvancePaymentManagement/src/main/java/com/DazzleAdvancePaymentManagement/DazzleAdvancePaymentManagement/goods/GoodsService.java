@@ -39,6 +39,14 @@ public class GoodsService {
             throw new DataNotFoundException("goods not found");
         }
     }
+    public List<Goods> getGoodsByCategory(String category) {
+        List<Goods> goodsList = this.goodsRepository.findByGoodsCategory(category);
+        if (!goodsList.isEmpty()) {
+            return goodsList;
+        } else {
+            throw new DataNotFoundException("goods not found");
+        }
+    }
     public void createNewGoods(String name, String category, Boolean ice, Integer amount, Integer price) {
         Goods g = new Goods();
         g.setGoodsName(name);

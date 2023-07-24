@@ -1,34 +1,282 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content" class="container">
+  <style>
+      div.row {
+        width: 100%;
+        display: flex;
+      }
+      div.left {
+        width: 50%;
+        float: left;
+        box-sizing: border-box;
+      }
+      div.right {
+        width: 50%;
+        float: right;
+        box-sizing: border-box;
+      }
+    </style>
   <h5 class="my-3 border-bottom pb-2">대즐 음료 주문서</h5>
-  <form th:action="@{/orders/create}" method="post">
+
+  <form th:action="@{/orders/create}" method="post" id="form">
     <div class="mb-3">
       <label for="customerName" class="form-label">주문자 성명</label>
-      <input type="text" name="customerName" id="customerName" class="form-control">
+      <input type="text" name="customerName" id="customerName" class="form-control" form="form">
     </div>
     <div class="mb-3">
       <label for="customerJob" class="form-label">주문자 소속(신분)</label>
-      <input type="text" name="customerJob" id="customerJob" class="form-control">
+      <input type="text" name="customerJob" id="customerJob" class="form-control" form="form">
     </div>
-    <div class="mb-3">
-      <label for="goodsName" class="form-label">상품명</label>
-      <input type="text" name="goodsName" id="goodsName" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label for="goodsCategory" class="form-label">상품카테고리</label>
-      <input type="text" name="goodsCategory" id="goodsCategory" class="form-control">
-    </div>
-    <div>
-      <label for="ice">아이스</label>
-      <input type="radio" name="ice" id="ice" value="true"/>
-      <label for="ice">핫</label>
-      <input type="radio" name="ice" id="ice" value="false"/>
-    </div>
-    <div class="mb-3">
-      <label for="amount" class="form-label">수량</label>
-      <input type="text" name="amount" id="amount" class="form-control">
-    </div>
-    <input type="submit" value="저장하기" class="btn btn-primary my-2">
   </form>
+    <div class="row">
+      <div class="left">
+        <div class="row">
+          <div class="left">
+    <table class="table">
+      <thead class="table-dark">
+      <h3>COFFEE</h3>
+      <tr>
+        <th>상품명</th>
+        <th>얼음</th>
+        <th>가격</th>
+        <th>주문개수</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="goods, loop : ${COFFEE}">
+        <td th:text="${goods.goodsName}"></td>
+        <td th:text="${goods.goodsIce}"></td>
+        <td th:text="${goods.goodsPrice}"></td>
+        <td>
+          <label>
+            <input type="text" name="amount" value="0" class="form-control" form="form">
+          </label>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+      </div>
+      <div class="right">
+        <table class="table">
+          <thead class="table-dark">
+          <h3>LATTE</h3>
+          <tr>
+            <th>상품명</th>
+            <th>얼음</th>
+            <th>가격</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="goods, loop : ${LATTE}">
+            <td th:text="${goods.goodsName}"></td>
+            <td th:text="${goods.goodsIce}"></td>
+            <td th:text="${goods.goodsPrice}"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+        </div>
+      </div>
+        <div class="right">
+          <div class="row">
+            <div class="left">
+              <table class="table">
+                <thead class="table-dark">
+                <h3>TEA</h3>
+                <tr>
+                  <th>상품명</th>
+                  <th>얼음</th>
+                  <th>가격</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="goods, loop : ${TEA}">
+                  <td th:text="${goods.goodsName}"></td>
+                  <td th:text="${goods.goodsIce}"></td>
+                  <td th:text="${goods.goodsPrice}"></td>
+                </tr>
+                </tbody>
+              </table>
+        </div>
+            <div class="right">
+              <table class="table">
+                <h3>ADE</h3>
+                <tr>
+                  <th>상품명</th>
+                  <th>가격</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="goods, loop : ${ADE}">
+                  <td th:text="${goods.goodsName}"></td>
+                  <td th:text="${goods.goodsPrice}"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="left">
+        <div class="row">
+          <div class="left">
+            <table class="table">
+              <thead class="table-dark">
+              <h3>BUBBLE</h3>
+              <tr>
+                <th>상품명</th>
+                <th>가격</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="goods, loop : ${BUBBLE}">
+                <td th:text="${goods.goodsName}"></td>
+                <td th:text="${goods.goodsPrice}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="right">
+            <table class="table">
+              <thead class="table-dark">
+              <h3>FRAPPUCCINO</h3>
+              <tr>
+                <th>상품명</th>
+                <th>가격</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="goods, loop : ${FRAPPUCCINO}">
+                <td th:text="${goods.goodsName}"></td>
+                <td th:text="${goods.goodsPrice}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="row">
+          <div class="left">
+            <table class="table">
+              <thead class="table-dark">
+              <h3>SMOOTHIE</h3>
+              <tr>
+                <th>상품명</th>
+                <th>가격</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="goods, loop : ${SMOOTHIE}">
+                <td th:text="${goods.goodsName}"></td>
+                <td th:text="${goods.goodsPrice}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="right">
+            <table class="table">
+              <thead class="table-dark">
+              <h3>JUICE</h3>
+              <tr>
+                <th>상품명</th>
+                <th>가격</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="goods, loop : ${JUICE}">
+                <td th:text="${goods.goodsName}"></td>
+                <td th:text="${goods.goodsPrice}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="left">
+        <div class="row">
+          <div class="left">
+            <table class="table">
+              <thead class="table-dark">
+              <h3>ICED_TEA</h3>
+              <tr>
+                <th>상품명</th>
+                <th>가격</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="goods, loop : ${ICED_TEA}">
+                <td th:text="${goods.goodsName}"></td>
+                <td th:text="${goods.goodsPrice}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="right">
+            <table class="table">
+              <thead class="table-dark">
+              <h3>SIDE_COOKIE</h3>
+              <tr>
+                <th>상품명</th>
+                <th>가격</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="goods, loop : ${SIDE_COOKIE}">
+                <td th:text="${goods.goodsName}"></td>
+                <td th:text="${goods.goodsPrice}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="row">
+          <div class="left">
+            <table class="table">
+              <thead class="table-dark">
+              <h3>SIDE_BOTTLE</h3>
+              <tr>
+                <th>상품명</th>
+                <th>가격</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="goods, loop : ${SIDE_BOTTLE}">
+                <td th:text="${goods.goodsName}"></td>
+                <td th:text="${goods.goodsPrice}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="right">
+            <table class="table">
+              <thead class="table-dark">
+              <h3>EXTRA_ORDERS</h3>
+              <tr>
+                <th>상품명</th>
+                <th>가격</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="goods, loop : ${EXTRA_ORDERS}">
+                <td th:text="${goods.goodsName}"></td>
+                <td th:text="${goods.goodsPrice}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  <input type="submit" value="저장하기" class="btn btn-primary my-2" form="form">
 </div>
+
+
 </html>

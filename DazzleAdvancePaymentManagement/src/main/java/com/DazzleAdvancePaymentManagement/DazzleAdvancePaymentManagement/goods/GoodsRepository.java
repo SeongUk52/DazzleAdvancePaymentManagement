@@ -10,6 +10,7 @@ public interface GoodsRepository extends JpaRepository<Goods, Integer> {
     List<Goods> findByGoodsName(String goodsName);
     List<Goods> findByGoodsCategory(String goodsCategory);
     List<Goods> findByGoodsIce(Boolean goodsIce);
+    Goods findByGoodsNameAndGoodsCategoryAndGoodsIce(String goodsName,String goodsCategory, Boolean goodsIce);
 
     Optional<Goods> findByGoodsId(Integer goodsId);
     List<Goods> findAll();
