@@ -135,6 +135,15 @@ public class CustomerService {
             throw new DataNotFoundException("customer not found");
         }
     }
+    public List<Customer> getPersonalListMonthly(Integer id) {
+        List<Customer> customerPM = this.customerRepository.findByCustomerIdAndCustomerDateBetween(id, LocalDateTime.now().withDayOfMonth(1), LocalDateTime.now().withDayOfMonth(31));
+        if (true) {
+            return customerPM;
+        } else {
+            throw new DataNotFoundException("customer not found");
+        }
+    }
+
     public Customer getCustomer(Integer id){
         Optional<Customer> customer = this.customerRepository.findById(id);
         if(customer.isPresent()){

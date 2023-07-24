@@ -45,7 +45,7 @@ public class CustomerController {
 
     @GetMapping(value = "/customer/detail/{id}")
     public String customerDetail(Model model, @PathVariable("id") Integer id) {
-        List<Customer> customerList = this.customerService.getPersonalList(id);
+        List<Customer> customerList = this.customerService.getPersonalListMonthly(id);
         List<Orders> ordersList = this.ordersService.getPersonalOrderList(id);
         model.addAttribute("customerList",customerList);
         model.addAttribute("ordersList",ordersList);
@@ -99,7 +99,7 @@ public class CustomerController {
 
     @GetMapping("/customer/excel/{id}")
     public void personalExcelDownload(@PathVariable("id") Integer id, HttpServletResponse response, HttpServletRequest req) throws IOException {
-        List<Customer> customerList = this.customerService.getPersonalList(id);
+        List<Customer> customerList = this.customerService.getPersonalListMonthly(id);
         List<Orders> ordersList = this.ordersService.getPersonalOrderList(id);
         this.customerService.personalExcelDownload(response,req,customerList,ordersList);
     }
