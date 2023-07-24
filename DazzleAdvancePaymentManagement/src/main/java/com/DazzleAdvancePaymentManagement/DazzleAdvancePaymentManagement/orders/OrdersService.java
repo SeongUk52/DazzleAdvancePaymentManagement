@@ -70,10 +70,10 @@ public class OrdersService {
     }
     public List<Orders> getPersonalOrderList(Integer id){
         List<Customer> customerList = this.customerRepository.findByCustomerId(id);
-        List<Orders> ordersList = this.ordersRepository.findByCustomerCustomerOrderId(customerList.get(0).getCustomerOrderId());
+        List<Orders> ordersList = this.ordersRepository.findByCustomerCustomerOrderIdAndOrdersDateBetween(customerList.get(0).getCustomerOrderId(), LocalDateTime.now().withDayOfMonth(1), LocalDateTime.now().withDayOfMonth(31));
         if(customerList.toArray().length>1) {
             for (int i = 1; i < customerList.toArray().length; i++) {
-                ordersList.addAll(this.ordersRepository.findByCustomerCustomerOrderId(customerList.get(i).getCustomerOrderId()));
+                ordersList.addAll(this.ordersRepository.findByCustomerCustomerOrderIdAndOrdersDateBetween(customerList.get(i).getCustomerOrderId(), LocalDateTime.now().withDayOfMonth(1), LocalDateTime.now().withDayOfMonth(31)));
             }
         }
         if (true){
