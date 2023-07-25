@@ -9,7 +9,7 @@
 
 ## 시스템 설계도
 <p align="center">
-  <img src="https://github.com/SeongUk52/DazzleAdvancePaymentManagement/assets/81956276/76017fda-83c4-4d60-9e4a-0bfe677dcc2d">
+  <img src="https://github.com/SeongUk52/DazzleAdvancePaymentManagement/assets/81956276/bee1dbc1-2fbe-499b-afe8-2016cfacf313">
 </p>
 
     
