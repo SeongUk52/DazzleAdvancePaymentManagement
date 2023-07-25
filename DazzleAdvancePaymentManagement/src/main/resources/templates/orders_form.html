@@ -49,6 +49,7 @@
         <td th:text="${goods.goodsPrice}"></td>
         <td>
           <label>
+            <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
             <input type="text" name="amount" value="0" class="form-control" form="form">
           </label>
         </td>
@@ -64,6 +65,7 @@
             <th>상품명</th>
             <th>얼음</th>
             <th>가격</th>
+            <th>주문개수</th>
           </tr>
           </thead>
           <tbody>
@@ -71,6 +73,12 @@
             <td th:text="${goods.goodsName}"></td>
             <td th:text="${goods.goodsIce}"></td>
             <td th:text="${goods.goodsPrice}"></td>
+            <td>
+              <label>
+                <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                <input type="text" name="amount" value="0" class="form-control" form="form">
+              </label>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -87,6 +95,7 @@
                   <th>상품명</th>
                   <th>얼음</th>
                   <th>가격</th>
+                  <th>주문개수</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -94,22 +103,36 @@
                   <td th:text="${goods.goodsName}"></td>
                   <td th:text="${goods.goodsIce}"></td>
                   <td th:text="${goods.goodsPrice}"></td>
+                  <td>
+                    <label>
+                      <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                      <input type="text" name="amount" value="0" class="form-control" form="form">
+                    </label>
+                  </td>
                 </tr>
                 </tbody>
               </table>
         </div>
             <div class="right">
               <table class="table">
+                <thead class="table-dark">
                 <h3>ADE</h3>
                 <tr>
                   <th>상품명</th>
                   <th>가격</th>
+                  <th>주문개수</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="goods, loop : ${ADE}">
                   <td th:text="${goods.goodsName}"></td>
                   <td th:text="${goods.goodsPrice}"></td>
+                  <td>
+                    <label>
+                      <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                      <input type="text" name="amount" value="0" class="form-control" form="form">
+                    </label>
+                  </td>
                 </tr>
                 </tbody>
               </table>
@@ -127,12 +150,19 @@
               <tr>
                 <th>상품명</th>
                 <th>가격</th>
+                <th>주문개수</th>
               </tr>
               </thead>
               <tbody>
               <tr th:each="goods, loop : ${BUBBLE}">
                 <td th:text="${goods.goodsName}"></td>
                 <td th:text="${goods.goodsPrice}"></td>
+                <td>
+                  <label>
+                    <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                    <input type="text" name="amount" value="0" class="form-control" form="form">
+                  </label>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -144,12 +174,19 @@
               <tr>
                 <th>상품명</th>
                 <th>가격</th>
+                <th>주문개수</th>
               </tr>
               </thead>
               <tbody>
               <tr th:each="goods, loop : ${FRAPPUCCINO}">
                 <td th:text="${goods.goodsName}"></td>
                 <td th:text="${goods.goodsPrice}"></td>
+                <td>
+                  <label>
+                    <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                    <input type="text" name="amount" value="0" class="form-control" form="form">
+                  </label>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -165,12 +202,19 @@
               <tr>
                 <th>상품명</th>
                 <th>가격</th>
+                <th>주문개수</th>
               </tr>
               </thead>
               <tbody>
               <tr th:each="goods, loop : ${SMOOTHIE}">
                 <td th:text="${goods.goodsName}"></td>
                 <td th:text="${goods.goodsPrice}"></td>
+                <td>
+                  <label>
+                    <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                    <input type="text" name="amount" value="0" class="form-control" form="form">
+                  </label>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -182,12 +226,19 @@
               <tr>
                 <th>상품명</th>
                 <th>가격</th>
+                <th>주문개수</th>
               </tr>
               </thead>
               <tbody>
               <tr th:each="goods, loop : ${JUICE}">
                 <td th:text="${goods.goodsName}"></td>
                 <td th:text="${goods.goodsPrice}"></td>
+                <td>
+                  <label>
+                    <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                    <input type="text" name="amount" value="0" class="form-control" form="form">
+                  </label>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -206,12 +257,19 @@
               <tr>
                 <th>상품명</th>
                 <th>가격</th>
+                <th>주문개수</th>
               </tr>
               </thead>
               <tbody>
               <tr th:each="goods, loop : ${ICED_TEA}">
                 <td th:text="${goods.goodsName}"></td>
                 <td th:text="${goods.goodsPrice}"></td>
+                <td>
+                  <label>
+                    <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                    <input type="text" name="amount" value="0" class="form-control" form="form">
+                  </label>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -223,12 +281,19 @@
               <tr>
                 <th>상품명</th>
                 <th>가격</th>
+                <th>주문개수</th>
               </tr>
               </thead>
               <tbody>
               <tr th:each="goods, loop : ${SIDE_COOKIE}">
                 <td th:text="${goods.goodsName}"></td>
                 <td th:text="${goods.goodsPrice}"></td>
+                <td>
+                  <label>
+                    <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                    <input type="text" name="amount" value="0" class="form-control" form="form">
+                  </label>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -244,12 +309,19 @@
               <tr>
                 <th>상품명</th>
                 <th>가격</th>
+                <th>주문개수</th>
               </tr>
               </thead>
               <tbody>
               <tr th:each="goods, loop : ${SIDE_BOTTLE}">
                 <td th:text="${goods.goodsName}"></td>
                 <td th:text="${goods.goodsPrice}"></td>
+                <td>
+                  <label>
+                    <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                    <input type="text" name="amount" value="0" class="form-control" form="form">
+                  </label>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -261,12 +333,19 @@
               <tr>
                 <th>상품명</th>
                 <th>가격</th>
+                <th>주문개수</th>
               </tr>
               </thead>
               <tbody>
               <tr th:each="goods, loop : ${EXTRA_ORDERS}">
                 <td th:text="${goods.goodsName}"></td>
                 <td th:text="${goods.goodsPrice}"></td>
+                <td>
+                  <label>
+                    <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                    <input type="text" name="amount" value="0" class="form-control" form="form">
+                  </label>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -274,8 +353,8 @@
         </div>
       </div>
 
+      <input type="submit" value="저장하기" class="btn btn-primary my-2" form="form">
     </div>
-  <input type="submit" value="저장하기" class="btn btn-primary my-2" form="form">
 </div>
 
 

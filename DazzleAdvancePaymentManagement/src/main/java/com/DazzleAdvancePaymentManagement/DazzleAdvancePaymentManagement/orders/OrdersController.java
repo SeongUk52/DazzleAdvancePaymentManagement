@@ -59,13 +59,11 @@ public class OrdersController {
     }
 
     @PostMapping("/create")
-    public String ordersCreate(@RequestParam String customerName,@RequestParam String customerJob, @RequestParam(value="amount", required=true) List<Integer> amounts){
-        List<Goods> goodsList = this.goodsService.getList();
-        log.debug(amounts.toString());
+    public String ordersCreate(@RequestParam String customerName,@RequestParam String customerJob, @RequestParam(value="goodsIds", required=true) List<Integer> goodsIds, @RequestParam(value="amount", required=true) List<Integer> amounts){
         if(!amounts.isEmpty()){
             for(int i = 0 ; i<amounts.size();i++){
                 if(amounts.get(i)<1){continue;}
-                this.ordersService.createNewOrders(customerName, customerJob,goodsList.get(i).getGoodsId(),amounts.get(i));
+                this.ordersService.createNewOrders(customerName, customerJob,goodsIds.get(i),amounts.get(i));
             }
         }
         return "redirect:/orders/create";
