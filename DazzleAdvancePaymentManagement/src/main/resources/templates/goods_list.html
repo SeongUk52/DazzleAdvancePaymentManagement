@@ -18,7 +18,14 @@
         <td th:text="${(paging.number * paging.size) + loop.index}"></td>
         <td th:text="${goods.goodsCategory}"></td>
         <td th:text="${goods.goodsName}"></td>
-        <td th:text="${goods.goodsIce}"></td>
+        <td><!-- 타임리프 기능) 불리안값에따라 아이콘 출력-->
+          <span th:if="${goods.goodsIce}">
+            <i class="bi bi-cup-straw"></i>
+          </span>
+          <span th:if="${!goods.goodsIce}">
+            <i class="bi bi-cup-hot-fill"></i>
+          </span>
+        </td>
         <td th:text="${goods.goodsAmount}"></td>
         <td th:text="${goods.goodsPrice}"></td>
         <td th:text="${#temporals.format(goods.goodsDate,'yyyy-MM-dd HH:mm')}"></td>

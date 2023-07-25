@@ -51,7 +51,14 @@
       <tbody>
       <tr th:each="goods, loop : ${COFFEE}">
         <td th:text="${goods.goodsName}"></td>
-        <td th:text="${goods.goodsIce}"></td>
+        <td><!-- 타임리프 기능) 불리안값에따라 아이콘 출력-->
+          <span th:if="${goods.goodsIce}">
+            <i class="bi bi-cup-straw"></i>
+          </span>
+          <span th:if="${!goods.goodsIce}">
+            <i class="bi bi-cup-hot-fill"></i>
+          </span>
+        </td>
         <td th:text="${goods.goodsPrice}"></td>
         <td>
           <label>
@@ -77,7 +84,14 @@
           <tbody>
           <tr th:each="goods, loop : ${LATTE}">
             <td th:text="${goods.goodsName}"></td>
-            <td th:text="${goods.goodsIce}"></td>
+            <td><!-- 타임리프 기능) 불리안값에따라 아이콘 출력-->
+              <span th:if="${goods.goodsIce}">
+            <i class="bi bi-cup-straw"></i>
+          </span>
+              <span th:if="${!goods.goodsIce}">
+            <i class="bi bi-cup-hot-fill"></i>
+          </span>
+            </td>
             <td th:text="${goods.goodsPrice}"></td>
             <td>
               <label>
@@ -107,7 +121,14 @@
                 <tbody>
                 <tr th:each="goods, loop : ${TEA}">
                   <td th:text="${goods.goodsName}"></td>
-                  <td th:text="${goods.goodsIce}"></td>
+                  <td><!-- 타임리프 기능) 불리안값에따라 아이콘 출력-->
+                    <span th:if="${goods.goodsIce}">
+            <i class="bi bi-cup-straw"></i>
+          </span>
+                    <span th:if="${!goods.goodsIce}">
+            <i class="bi bi-cup-hot-fill"></i>
+          </span>
+                  </td>
                   <td th:text="${goods.goodsPrice}"></td>
                   <td>
                     <label>

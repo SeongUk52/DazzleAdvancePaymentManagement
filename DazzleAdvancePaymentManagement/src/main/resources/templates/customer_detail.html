@@ -66,7 +66,14 @@
         <tr th:each="orders, loop : ${ordersList}">
             <td th:text="${orders.goods.goodsName}"></td>
             <td th:text="${orders.goods.goodsCategory}"></td>
-            <td th:text="${orders.goods.goodsIce}"></td>
+            <td><!-- 타임리프 기능) 불리안값에따라 아이콘 출력-->
+                <span th:if="${orders.goods.goodsIce}">
+            <i class="bi bi-cup-straw"></i>
+          </span>
+                <span th:if="${!orders.goods.goodsIce}">
+            <i class="bi bi-cup-hot-fill"></i>
+          </span>
+            </td>
             <td th:text="${orders.ordersAmount}"></td>
             <td th:text="${#temporals.format(orders.ordersDate,'yyyy-MM-dd HH:mm')}"></td>
             <td th:text="${orders.ordersPrice}"></td>

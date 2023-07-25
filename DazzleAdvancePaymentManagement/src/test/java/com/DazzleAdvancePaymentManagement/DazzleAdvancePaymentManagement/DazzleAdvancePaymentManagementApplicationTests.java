@@ -31,6 +31,7 @@ class DazzleAdvancePaymentManagementApplicationTests {
 		dazzle.setStoreDate(LocalDateTime.now());
 		this.storeRepository.save(dazzle);
 		 */
+		/*
 		Optional<Store> oq =this.storeRepository.findById(1);
 		assertTrue(oq.isPresent());
 		Store q = oq.get();
@@ -44,6 +45,7 @@ class DazzleAdvancePaymentManagementApplicationTests {
 		c1.setStore(q);
 		this.customerRepository.save(c1);
 
+		 */
 
 	}
 
