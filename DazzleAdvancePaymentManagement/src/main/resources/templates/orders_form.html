@@ -19,13 +19,19 @@
   <h5 class="my-3 border-bottom pb-2">대즐 음료 주문서</h5>
 
   <form th:action="@{/orders/create}" method="post" id="form">
-    <div class="mb-3">
-      <label for="customerName" class="form-label">주문자 성명</label>
-      <input type="text" name="customerName" id="customerName" class="form-control" form="form">
-    </div>
-    <div class="mb-3">
-      <label for="customerJob" class="form-label">주문자 소속(신분)</label>
-      <input type="text" name="customerJob" id="customerJob" class="form-control" form="form">
+    <div class="row">
+      <div class="left">
+        <div class="mb-3">
+          <label for="customerName" class="form-label">주문자 성명</label>
+          <input type="text" name="customerName" id="customerName" class="form-control" form="form">
+        </div>
+      </div>
+      <div class="right">
+        <div class="mb-3">
+          <label for="customerJob" class="form-label">주문자 소속(신분)</label>
+          <input type="text" name="customerJob" id="customerJob" class="form-control" form="form">
+        </div>
+      </div>
     </div>
   </form>
     <div class="row">
@@ -125,6 +131,29 @@
                 </thead>
                 <tbody>
                 <tr th:each="goods, loop : ${ADE}">
+                  <td th:text="${goods.goodsName}"></td>
+                  <td th:text="${goods.goodsPrice}"></td>
+                  <td>
+                    <label>
+                      <input type="hidden" name="goodsIds" th:value="${goods.goodsId}" form="form">
+                      <input type="text" name="amount" value="0" class="form-control" form="form">
+                    </label>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+
+              <table class="table">
+                <thead class="table-dark">
+                <h3>BAKERY</h3>
+                <tr>
+                  <th>상품명</th>
+                  <th>가격</th>
+                  <th>주문개수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="goods, loop : ${BAKERY}">
                   <td th:text="${goods.goodsName}"></td>
                   <td th:text="${goods.goodsPrice}"></td>
                   <td>

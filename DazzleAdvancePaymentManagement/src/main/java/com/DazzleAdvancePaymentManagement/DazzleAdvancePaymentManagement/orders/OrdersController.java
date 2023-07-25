@@ -43,6 +43,7 @@ public class OrdersController {
         List<Goods> JUICE = this.goodsService.getGoodsByCategory("JUICE");
         List<Goods> ICED_TEA = this.goodsService.getGoodsByCategory("ICED_TEA");
         List<Goods> ADE = this.goodsService.getGoodsByCategory("ADE");
+        List<Goods> BAKERY = this.goodsService.getGoodsByCategory("BAKERY");
         model.addAttribute("COFFEE",COFFEE);//1
         model.addAttribute("BUBBLE",BUBBLE);//2
         model.addAttribute("EXTRA_ORDERS",EXTRA_ORDERS);
@@ -55,6 +56,7 @@ public class OrdersController {
         model.addAttribute("JUICE",JUICE);//2
         model.addAttribute("ICED_TEA",ICED_TEA);
         model.addAttribute("ADE",ADE);//1층
+        model.addAttribute("BAKERY",BAKERY);//1층
         return "orders_form";
     }
 

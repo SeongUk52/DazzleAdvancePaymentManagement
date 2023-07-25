@@ -66,10 +66,10 @@ public class OrdersService {
     }
     public List<Orders> getPersonalOrderList(Integer id){
         List<Customer> customerList = this.customerRepository.findByCustomerId(id);
-        List<Orders> ordersList = this.ordersRepository.findByCustomerCustomerOrderIdAndOrdersDateBetween(customerList.get(0).getCustomerOrderId(), LocalDateTime.now().withDayOfMonth(1), LocalDateTime.now().withDayOfMonth(31));
+        List<Orders> ordersList = this.ordersRepository.findByCustomerCustomerOrderIdAndOrdersDateBetween(customerList.get(0).getCustomerOrderId(), LocalDateTime.of(LocalDateTime.now().getYear(),LocalDateTime.now().getMonthValue()-1,1,0,0).withDayOfMonth(1), LocalDateTime.now().withDayOfMonth(31));
         if(customerList.toArray().length>1) {
             for (int i = 1; i < customerList.toArray().length; i++) {
-                ordersList.addAll(this.ordersRepository.findByCustomerCustomerOrderIdAndOrdersDateBetween(customerList.get(i).getCustomerOrderId(), LocalDateTime.now().withDayOfMonth(1), LocalDateTime.now().withDayOfMonth(31)));
+                ordersList.addAll(this.ordersRepository.findByCustomerCustomerOrderIdAndOrdersDateBetween(customerList.get(i).getCustomerOrderId(), LocalDateTime.of(LocalDateTime.now().getYear(),LocalDateTime.now().getMonthValue()-1,1,0,0).withDayOfMonth(1), LocalDateTime.now().withDayOfMonth(31)));
             }
         }
         if (true){

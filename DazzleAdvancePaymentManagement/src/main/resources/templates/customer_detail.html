@@ -17,8 +17,9 @@
       }
     </style>
     <div class="row">
+        <a th:href=|/customer/excel/${customerList.get(0).getCustomerId()}| class="btn btn-success">엑셀 파일 출력</a>
         <div class="left">
-            <h3>개인별 선수금 변동 내역</h3>
+            <h3>개인별 선수금 변동 내역(최근 2달)</h3>
     <table class="table">
         <thead class="table-dark">
             <tr>
@@ -49,7 +50,7 @@
     </form>
         </div>
         <div class="right">
-            <h3>개인별 음료주문 내역</h3>
+            <h3>개인별 음료주문 내역(최근 2달)</h3>
     <table class="table">
         <thead class="table-dark">
         <tr>
@@ -75,7 +76,6 @@
     </table>
         </div>
 
-        <a th:href=|/customer/excel/${customerList.get(0).getCustomerId()}| class="btn btn-success">엑셀 파일 출력</a>
     </div>
 
 </div>

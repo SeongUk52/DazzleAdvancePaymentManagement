@@ -136,7 +136,8 @@ public class CustomerService {
         }
     }
     public List<Customer> getPersonalListMonthly(Integer id) {
-        List<Customer> customerPM = this.customerRepository.findByCustomerIdAndCustomerDateBetween(id, LocalDateTime.now().withDayOfMonth(1), LocalDateTime.now().withDayOfMonth(31));
+        List<Customer> customerPM = this.customerRepository.findByCustomerIdAndCustomerDateBetween(id, LocalDateTime.of(LocalDateTime.now().getYear(),LocalDateTime.now().getMonthValue()-1,1,0,0).withDayOfMonth(1), LocalDateTime.now().withDayOfMonth(31));
+        //이전달~이번달
         if (true) {
             return customerPM;
         } else {
@@ -371,6 +372,8 @@ public class CustomerService {
         }
     }
 
+
+    //개인별 사용내역 엑셀파일 다운로드
     public void personalExcelDownload(HttpServletResponse response, HttpServletRequest req, List<Customer> customerList, List<Orders> ordersList) throws IOException {
         //        Workbook wb = new HSSFWorkbook();
         Workbook wb = new XSSFWorkbook();
@@ -392,13 +395,13 @@ public class CustomerService {
         cell = row.createCell(0);
         defaultStyle.setWrapText(true);
         cell.setCellStyle(defaultStyle);
-        cell.setCellValue(customerList.get(0).getCustomerName()+"님의 선수금 내역("+LocalDateTime.now().getYear()+"년 "+LocalDateTime.now().getMonthValue()+"월 분)");
+        cell.setCellValue(customerList.get(0).getCustomerName()+"님의 선수금 내역("+LocalDateTime.now().getYear()+"년 "+(LocalDateTime.now().getMonthValue()-1)+"월 ~"+LocalDateTime.now().getMonthValue()+"월 분)");
         for(int i =1; i<13;i++){
             row.createCell(i).setCellStyle(defaultStyle);
         }
         row = sheet.createRow(rowNum++);
         cell = row.createCell(0);
-        cell.setCellValue(LocalDateTime.now().getYear()+"년 "+LocalDateTime.now().getMonthValue()+"월 기준");
+        cell.setCellValue(LocalDateTime.now().getYear()+"년 "+(LocalDateTime.now().getMonthValue()-1)+"월 ~"+LocalDateTime.now().getMonthValue()+"월 기준");
 
         cell = row.createCell(1);
         cell.setCellValue("성함:");
@@ -413,7 +416,11 @@ public class CustomerService {
         for(int i =1; i<13;i++){
             sheet.setColumnWidth(i,3500);   //셀 너비설정
         }
+        sheet.setColumnWidth(5,1500);   //셀 너비설정
         sheet.setColumnWidth(6,4500);   //셀 너비설정
+        sheet.setColumnWidth(7,4500);   //셀 너비설정
+        sheet.setColumnWidth(8,2000);   //셀 너비설정
+        sheet.setColumnWidth(9,2000);   //셀 너비설정
         sheet.addMergedRegion(new CellRangeAddress(rowNum,rowNum,0,3));
         sheet.addMergedRegion(new CellRangeAddress(rowNum,rowNum,5,12));
         row = sheet.createRow(rowNum++);
@@ -535,7 +542,7 @@ public class CustomerService {
 
 
         // 컨텐츠 타입과 파일명 지정
-        String fileNm = LocalDateTime.now().getYear()+"년"+LocalDateTime.now().getMonthValue()+"월"+customerList.get(0).getCustomerName()+"님의 선수금내역.xlsx";
+        String fileNm = LocalDateTime.now().getYear()+"년"+(LocalDateTime.now().getMonthValue()-1)+"월 ~"+LocalDateTime.now().getMonthValue()+"월"+customerList.get(0).getCustomerName()+"님의 선수금내역.xlsx";
         String browser = getBrowser(req);
         response.setContentType("ms-vnd/excel; charset=UTF-8");
 //        response.setHeader("Content-Disposition", "attachment;filename=example.xls");

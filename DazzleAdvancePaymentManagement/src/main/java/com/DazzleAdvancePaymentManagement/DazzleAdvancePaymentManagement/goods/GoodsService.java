@@ -1,6 +1,7 @@
 package com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goods;
 
 import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.DataNotFoundException;
+import com.DazzleAdvancePaymentManagement.DazzleAdvancePaymentManagement.goodsLog.GoodsLog;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -28,6 +29,14 @@ public class GoodsService {
         return this.goodsRepository.findById(id);
     }
 
+
+    public List<Goods> getGoodsCBB(){
+        List<Goods> goodsList = this.goodsRepository.findByGoodsCategory("SIDE_COOKIE");
+        goodsList.addAll(this.goodsRepository.findByGoodsCategory("SIDE_BOTTLE"));
+        goodsList.addAll(this.goodsRepository.findByGoodsCategory("BAKERY"));
+
+        return goodsList;
+    }
     public void delete(Goods goods) {
         this.goodsRepository.delete(goods);
     }
