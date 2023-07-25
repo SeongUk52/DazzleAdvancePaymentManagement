@@ -8,7 +8,11 @@
 한기대 카페 대즐에는 점장님께서 수기로 선수금을 기록하고 계산기로 일일이 값을 계산하여 월간 선수금을 기록하고 계셨다. 한기대 생협의 의뢰를 받아 이를 보다 쉽고 빠르게 기록하고 계산할 수 있는 프로그램을 제작하게 되었다.
 
 ## 시스템 설계도
+<p align="center">
+  <img src="https://github.com/SeongUk52/DazzleAdvancePaymentManagement/assets/81956276/76017fda-83c4-4d60-9e4a-0bfe677dcc2d">
+</p>
 
+    
 ## DB 개념적 설계
 
 ## DB 논리적 설계
