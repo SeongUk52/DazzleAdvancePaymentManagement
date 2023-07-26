@@ -12,10 +12,10 @@
   <img src="https://github.com/SeongUk52/DazzleAdvancePaymentManagement/assets/81956276/bee1dbc1-2fbe-499b-afe8-2016cfacf313">
 </p>
 
-    
-## DB 개념적 설계
-
 ## DB 논리적 설계
+<p align="center">
+  <img src="https://github.com/SeongUk52/DazzleAdvancePaymentManagement/assets/81956276/fe2094cf-da2f-44be-9f6b-4e8033ae87d9">
+</p>
 
 ## 프로젝트 구조
 
