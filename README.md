@@ -11,6 +11,7 @@
 - DB데이터 CRUD
 - DB데이터를 활용하여 선수금, 판매량 계산
 - 계산된 선수금, 판매량과 개인별 선수금 사용내역을 엑셀파일로 다운로드
+- @RequestParam(value="amount", required=true) List<Integer> amounts 를 활용하여 한 페이지에서 많은 데이터를 한번에 입력하는 기능(음료주문서 페이지)
 
 ## 시스템 설계도
 <p align="center">
