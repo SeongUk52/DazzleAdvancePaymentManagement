@@ -14,7 +14,7 @@
 
 ## DB 논리적 설계
 <p align="center">
-  <img src="https://github.com/SeongUk52/DazzleAdvancePaymentManagement/assets/81956276/fe2094cf-da2f-44be-9f6b-4e8033ae87d9">
+  <img src="https://github.com/SeongUk52/DazzleAdvancePaymentManagement/assets/81956276/da4c3ab9-9b14-4e1b-857a-3bf2a85a6163">
 </p>
 
 ## 프로젝트 구조
